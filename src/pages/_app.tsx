@@ -8,6 +8,9 @@ import { MUIProvider } from '@/components/providers'
 import { NextPageWithLayout } from '@/features/common/interfaces'
 import { createEmotionCache } from '@/utils/emotion-cache'
 
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+
 // Fonts.
 import '@fontsource/plus-jakarta-sans/300.css'
 import '@fontsource/plus-jakarta-sans/300-italic.css'
@@ -19,6 +22,9 @@ import '@fontsource/plus-jakarta-sans/600.css'
 import '@fontsource/plus-jakarta-sans/600-italic.css'
 import '@fontsource/plus-jakarta-sans/700.css'
 import '@fontsource/plus-jakarta-sans/700-italic.css'
+
+// Store
+import { store, persistor } from '@/store'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -40,11 +46,15 @@ const App: FC<AppPropsWithLayout> = (props: AppPropsWithLayout) => {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <title>Vielra</title>
       </Head>
-      <MUIProvider>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        {getLayout(<Component {...pageProps} />)}
-      </MUIProvider>
+      <Provider store={store}>
+        <PersistGate persistor={persistor} loading={null}>
+          <MUIProvider>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            {getLayout(<Component {...pageProps} />)}
+          </MUIProvider>
+        </PersistGate>
+      </Provider>
     </CacheProvider>
   )
 }

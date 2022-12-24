@@ -5,7 +5,7 @@ import { CssBaseline } from '@mui/material'
 import { EmotionCache } from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 import { MUIProvider } from '@/components/providers'
-import { NextPageWithLayout } from '@/modules/common/interfaces'
+import { NextPageWithLayout } from '@/features/common/interfaces'
 import { createEmotionCache } from '@/utils/emotion-cache'
 
 // Fonts.

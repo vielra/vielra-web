@@ -2,7 +2,7 @@ import { createTheme as createMuiTheme, Theme } from '@mui/material/styles'
 import { PaletteMode } from '@mui/material'
 
 // Theme config.
-import { paletteBase, paletteLight, paletteDark, shadows, typography, breakpoints } from '@/modules/theme/config'
+import { paletteBase, paletteLight, paletteDark, shadows, typography, breakpoints } from '@/features/theme/config'
 
 /**
  * Create theme

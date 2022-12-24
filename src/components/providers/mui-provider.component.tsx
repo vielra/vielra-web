@@ -4,7 +4,7 @@ import React, { FC, ReactNode } from 'react'
 import { ThemeProvider } from '@mui/material'
 
 // Theme config.
-import { createTheme } from '@/modules/theme/utils'
+import { createTheme } from '@/features/theme/utils'
 
 interface Props {
   children: ReactNode

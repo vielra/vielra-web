@@ -3,6 +3,7 @@ import { PaletteMode } from '@mui/material'
 
 // Theme config.
 import { paletteBase, paletteLight, paletteDark, shadows, typography, breakpoints } from '@/features/theme/config'
+import { components } from '../config/components'
 
 /**
  * Create theme
@@ -19,5 +20,6 @@ export const createTheme = (mode?: PaletteMode): Theme => {
     typography,
     breakpoints,
     shadows,
+    components,
   })
 }

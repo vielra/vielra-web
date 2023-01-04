@@ -2,13 +2,13 @@ import { alpha, PaletteOptions } from '@mui/material'
 import { grey, common } from '@mui/material/colors'
 
 export const paletteBase: Partial<PaletteOptions> = {
-  primary: {
+  secondary: {
     main: '#FF4564',
     dark: '#F10930',
     light: '#FEF2EF',
     contrastText: '#fbfbfb',
   },
-  secondary: {
+  primary: {
     main: '#3393FF',
     dark: '#1955B7',
     light: '#EEF9FE',
@@ -48,7 +48,7 @@ export const paletteBase: Partial<PaletteOptions> = {
 export const paletteLight: Pick<PaletteOptions, 'text' | 'background' | 'mode' | 'divider'> = {
   mode: 'light',
   background: {
-    default: '#f5f5f9',
+    default: '#f7f7f7',
     paper: common.white,
   },
   text: {

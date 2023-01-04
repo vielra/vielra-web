@@ -1,15 +1,18 @@
-import { Box, Button, Typography } from '@mui/material'
-import type { NextPage } from 'next'
-import Link from 'next/Link'
+import { DefaultLayout } from '@/components/layouts'
+import { NextPageWithLayout } from '@/features/common/interfaces'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 
-const Home: NextPage = () => {
+const Home: NextPageWithLayout<any> = () => {
   return (
     <Box sx={{ height: '100vh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Box>
-        <Typography>Hello World</Typography>
+        <Typography variant="h3">Hello 🙂</Typography>
       </Box>
     </Box>
   )
 }
+
+Home.getLayout = (page) => <DefaultLayout>{page}</DefaultLayout>
 
 export default Home

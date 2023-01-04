@@ -6,7 +6,8 @@ export interface IRequestLogin {
 
 export interface IRequestRegister {
   name: string
-  phone_number: string
+  username: string
+  phone_number?: string
   email: string
   password: string
   password_confirmation: string

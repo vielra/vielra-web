@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '@/store'
 
+// Interfaces
+import { IUser } from '@/features/user/interfaces'
+
 // Type for our state
 export interface AuthState {
   token: boolean
-  user: any | null
+  user: IUser
 }
 
 // Initial state

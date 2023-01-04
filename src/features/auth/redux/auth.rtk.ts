@@ -19,6 +19,10 @@ export const authApi = createApi({
       query: (body) => ({
         url: `/auth/login`,
         method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
         body,
       }),
     }),
@@ -26,6 +30,10 @@ export const authApi = createApi({
       query: (body) => ({
         url: `/auth/register`,
         method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
         body,
       }),
     }),
@@ -33,6 +41,10 @@ export const authApi = createApi({
       query: () => ({
         url: `/auth/logout`,
         method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
         body: { access_token: getAccessToken() },
       }),
     }),

@@ -43,9 +43,28 @@ const TextField: FC<Props> = (props) => {
       <MuiTextField
         sx={{
           '& fieldset': { borderColor: getBorderColor(Boolean(isSuccess)) },
+
+          // input label
+          '& .MuiInputLabel-root': {
+            '&:not(.MuiInputLabel-sizeSmall)': {
+              transform: 'translate(14px, 12px) scale(1)',
+            },
+            // Label shrink
+            '&.MuiInputLabel-shrink': {
+              transform: 'translate(18px, -7px) scale(0.6) !important',
+            },
+          },
+
           '& .MuiInputBase-root': {
             boxShadow: elevation,
             backgroundColor: 'background.paper',
+          },
+          '& .MuiInputBase-input': {
+            boxShadow: elevation,
+            backgroundColor: 'background.paper',
+            '&:not(.MuiInputBase-inputSizeSmall)': {
+              padding: '12px 18px',
+            },
           },
         }}
         {...rest}

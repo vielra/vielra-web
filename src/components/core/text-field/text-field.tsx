@@ -23,8 +23,8 @@ const TextField: FC<Props> = (props) => {
       {(icon || iconImage) && (
         <Box
           sx={{
-            height: 24,
-            width: 24,
+            height: 22,
+            width: 22,
             transform: 'translate(-12px, 12px)',
             borderRadius: '50%',
             display: 'flex',

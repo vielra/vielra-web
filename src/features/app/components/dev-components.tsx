@@ -3,6 +3,8 @@ import React, { FC, useState } from 'react'
 import Box from '@mui/material/Box'
 import { Button } from '@/components/core/button'
 import { Dialog } from '@/components/core/dialog'
+import { CircularProgress } from '@/components/core/circular-progress'
+import { Loading } from '@/components/shared/loading'
 // Then use Icon component with icon name as icon parameter:
 
 const DevComponents: FC = () => {
@@ -22,6 +24,9 @@ const DevComponents: FC = () => {
       />
 
       <Button onClick={() => setVisibleDialog(true)}>click me</Button>
+
+      {/* <CircularProgress /> */}
+      <Loading />
       <Dialog
         open={visibleDialog}
         onClose={() => setVisibleDialog(false)}

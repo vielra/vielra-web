@@ -1,5 +1,4 @@
-import { blueGrey, indigo } from '@mui/material/colors'
-import { alpha, Components } from '@mui/material/styles'
+import { Components } from '@mui/material/styles'
 
 export const components: Components = {
   MuiCircularProgress: {
@@ -8,17 +7,15 @@ export const components: Components = {
     },
   },
   MuiOutlinedInput: {
+    styleOverrides: {},
+  },
+  MuiListItemIcon: {
     styleOverrides: {
       root: {
-        // '& .MuiInputBase-input': {
-        //   padding: '12px 18px',
-        // },
-        '& label.MuiInputLabel-outlined': {
-          transform: 'translate(14px, 11px)',
+        '& img': {
+          width: 16,
+          height: 'auto',
         },
-      },
-      input: {
-        padding: '12px 18px',
       },
     },
   },

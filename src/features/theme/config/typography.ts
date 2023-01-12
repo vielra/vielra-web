@@ -9,25 +9,25 @@ export const typography: TypographyOptions = {
   fontWeightLight: 300,
   fontWeightRegular: 400,
   fontWeightMedium: 500,
-  fontWeightBold: 700,
+  fontWeightBold: 600,
   h1: {
-    fontWeight: 700,
+    fontWeight: 600,
     fontSize: 42,
     fontFamily,
   },
   h2: {
-    fontWeight: 700,
+    fontWeight: 600,
     fontSize: 34,
     fontFamily,
   },
   h3: {
     fontSize: 28,
-    fontWeight: 700,
+    fontWeight: 600,
     fontFamily,
   },
   h4: {
     fontSize: 24,
-    fontWeight: 700,
+    fontWeight: 600,
     fontFamily,
   },
   h5: {

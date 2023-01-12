@@ -8,6 +8,7 @@ import {
   useLoginMutation,
   useRegisterMutation,
   useLogoutMutation,
+  useSendLinkResetPasswordMutation,
 } from '../redux'
 
 const useAuth = () => {
@@ -22,6 +23,10 @@ const useAuth = () => {
 
   // Register api
   const [auth_register, { isLoading: register_isLoading }] = useRegisterMutation()
+
+  // Register api
+  const [auth_sendLinkResetPassword, { isLoading: auth_sendLinkResetPasswordLoading }] =
+    useSendLinkResetPasswordMutation()
 
   // Logout api
   const [auth_logout, { isLoading: logout_isLoading }] = useLogoutMutation()
@@ -39,6 +44,8 @@ const useAuth = () => {
     register_isLoading,
     auth_logout,
     logout_isLoading,
+    auth_sendLinkResetPassword,
+    auth_sendLinkResetPasswordLoading,
 
     // Actions
     auth_setToken,

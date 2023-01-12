@@ -8,7 +8,13 @@ import { API_BASE_URL } from '@/features/app/constants'
 import { getAccessToken } from '@/features/auth/utils'
 
 // Interfaces.
-import { IRequestLogin, IRequestRegister, IResponseLogin } from '@/features/auth/interfaces'
+import {
+  IRequestLogin,
+  IRequestRegister,
+  IRequestSendLinkResetPassword,
+  IResponseLogin,
+  IResponseSendLinkResetPassword,
+} from '@/features/auth/interfaces'
 
 // Define a service using a base URL and expected endpoints
 export const authApi = createApi({
@@ -37,6 +43,17 @@ export const authApi = createApi({
         body,
       }),
     }),
+    sendLinkResetPassword: builder.mutation<IResponseSendLinkResetPassword, IRequestSendLinkResetPassword>({
+      query: (body) => ({
+        url: `/auth/send-reset-password-link`,
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body,
+      }),
+    }),
     logout: builder.mutation<IResponseLogin, undefined>({
       query: () => ({
         url: `/auth/logout`,
@@ -54,4 +71,4 @@ export const authApi = createApi({
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation } = authApi
+export const { useLoginMutation, useRegisterMutation, useSendLinkResetPasswordMutation, useLogoutMutation } = authApi

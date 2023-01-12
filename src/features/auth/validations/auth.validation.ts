@@ -48,4 +48,8 @@ const signInValidation = Yup.object().shape({
   password: Yup.string().required('Please input password.'),
 })
 
-export { signUpValidation, signInValidation }
+const resetPasswordValidation = Yup.object().shape({
+  email: Yup.string().email('Please input a valid email associated with your account').required('Email is required'),
+})
+
+export { signUpValidation, signInValidation, resetPasswordValidation }

@@ -31,7 +31,7 @@ const clientSideEmotionCache = createEmotionCache()
 
 type AppPropsWithLayout = AppProps & {
   emotionCache: EmotionCache
-  Component: NextPageWithLayout<any>
+  Component: NextPageWithLayout<unknown>
 }
 
 const App: FC<AppPropsWithLayout> = (props: AppPropsWithLayout) => {

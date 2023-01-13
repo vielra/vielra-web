@@ -3,11 +3,11 @@ import Cookies from 'js-cookie'
 import { API_BASE_URL } from '@/features/app/constants'
 
 const onRequest = (config: Partial<AxiosRequestConfig>): AxiosRequestConfig => {
-  const accessToken = Cookies.get('AccessToken')
-  if (accessToken) {
-    /* eslint-disable no-param-reassign */
-    config.headers.Authorization = `Bearer ${accessToken}`
-  }
+  // const accessToken = Cookies.get('AccessToken')
+  // if (accessToken) {
+  //   /* eslint-disable no-param-reassign */
+  //   config.headers.Authorization = `Bearer ${accessToken}`
+  // }
   return config
 }
 

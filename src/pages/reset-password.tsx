@@ -7,7 +7,7 @@ import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
-const ResetPassword: NextPageWithLayout<any> = () => {
+const ResetPassword: NextPageWithLayout<unknown> = () => {
   return (
     <Box sx={{ width: { xs: '100%', sm: 380 } }}>
       <Box sx={{ mb: 4 }}>

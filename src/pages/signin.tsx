@@ -5,7 +5,7 @@ import { NextPageWithLayout } from '@/features/common/interfaces'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
-const SignInPage: NextPageWithLayout<any> = () => {
+const SignInPage: NextPageWithLayout<unknown> = () => {
   return (
     <Box sx={{ width: { xs: '100%', sm: 380 } }}>
       <Box sx={{ mb: 2 }}>

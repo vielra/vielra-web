@@ -7,7 +7,7 @@ import { IUser } from '@/features/user/interfaces'
 // Type for our state
 export interface AuthState {
   token: boolean
-  user: IUser
+  user: IUser | null
 }
 
 // Initial state

@@ -8,7 +8,7 @@ import Box from '@mui/material/Box'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-const MyAccountPage: NextPageWithLayout<any> = () => {
+const MyAccountPage: NextPageWithLayout<unknown> = () => {
   const router = useRouter()
 
   const { isAuthenticated, user } = useAuth()
@@ -19,12 +19,15 @@ const MyAccountPage: NextPageWithLayout<any> = () => {
     }
   }, [isAuthenticated, router, user])
 
-  return (
-    <Box sx={{ width: '100%' }}>
-      <Typography>{user.name}</Typography>
-      <Typography>{user.email}</Typography>
-    </Box>
-  )
+  if (user) {
+    return (
+      <Box sx={{ width: '100%' }}>
+        <Typography>{user.name}</Typography>
+        <Typography>{user.email}</Typography>
+      </Box>
+    )
+  }
+  return null
 }
 
 MyAccountPage.getLayout = (page) => <DefaultLayout>{page}</DefaultLayout>

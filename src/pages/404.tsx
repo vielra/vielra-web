@@ -2,7 +2,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { NextPageWithLayout } from '@/features/common/interfaces'
 
-const PageNotFound: NextPageWithLayout<any> = () => {
+const PageNotFound: NextPageWithLayout<unknown> = () => {
   return (
     <Box
       sx={{

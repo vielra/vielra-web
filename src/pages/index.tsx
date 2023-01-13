@@ -3,7 +3,7 @@ import { NextPageWithLayout } from '@/features/common/interfaces'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
-const Home: NextPageWithLayout<any> = () => {
+const Home: NextPageWithLayout<unknown> = () => {
   return (
     <Box sx={{ height: '100vh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Box>

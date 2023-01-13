@@ -1,10 +1,14 @@
 import { FC, useEffect, useState } from 'react'
 
+import RouterLink from 'next/link'
+
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 
 // Mui components.
 import Box from '@mui/material/Box'
+import Link from '@mui/material/Link'
 import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 
 // Validation schema
 import { signUpValidation } from '../validations'
@@ -66,7 +70,7 @@ const SignUpForm: FC = () => {
         dispatch(auth_setToken(response.token))
         dispatch(auth_setUser(response.user))
       }
-    } catch (_) { }
+    } catch (_) {}
   }
 
   const handleError = (objErrors: any): void => {
@@ -83,7 +87,7 @@ const SignUpForm: FC = () => {
 
   return (
     <Box component="form" onSubmit={handleSubmit(handleSubmitSignUp, handleError)}>
-      <Stack spacing={1} sx={{ width: 300 }}>
+      <Stack spacing={0.5}>
         <Controller
           name="name"
           control={control}
@@ -91,7 +95,8 @@ const SignUpForm: FC = () => {
             <TextField
               fullWidth
               label="Name"
-              icon="mdi-light:home"
+              icon="mdi:account-circle"
+              margin="none"
               elevation={1}
               error={Boolean(errors?.name?.message)}
               helperText={Boolean(errors?.name?.message) && errors?.name?.message}
@@ -106,6 +111,8 @@ const SignUpForm: FC = () => {
             <TextField
               fullWidth
               label="Username"
+              icon="mdi:account-badge"
+              margin="none"
               elevation={1}
               error={Boolean(errors?.username?.message)}
               helperText={
@@ -124,7 +131,9 @@ const SignUpForm: FC = () => {
           render={({ field }) => (
             <TextField
               fullWidth
+              icon="mdi:email"
               label="Email"
+              margin="none"
               elevation={1}
               error={Boolean(errors?.email?.message)}
               helperText={Boolean(errors?.email?.message) && errors?.email?.message}
@@ -139,6 +148,8 @@ const SignUpForm: FC = () => {
             <TextField
               fullWidth
               label="Password"
+              icon="mdi:lock"
+              margin="none"
               elevation={1}
               error={Boolean(errors?.password?.message)}
               helperText={Boolean(errors?.password?.message) && errors?.password?.message}
@@ -152,6 +163,8 @@ const SignUpForm: FC = () => {
           render={({ field }) => (
             <TextField
               fullWidth
+              icon="mdi:lock"
+              margin="none"
               label="Password Confirmation"
               elevation={1}
               error={Boolean(errors?.password_confirmation?.message)}
@@ -161,11 +174,24 @@ const SignUpForm: FC = () => {
           )}
         />
       </Stack>
-
-      <Stack spacing={1} sx={{ mt: 2 }}>
-        <Button type="submit" variant="contained" disableElevation>
+      <Stack sx={{ mt: 3 }} spacing={2}>
+        <Button type="submit" variant="contained" fullWidth disableElevation>
           Sign Up
         </Button>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            whiteSpace: 'pre-wrap',
+            justifyContent: 'center',
+          }}
+        >
+          <Typography>Joined with Vielra before ? </Typography>
+          <RouterLink href="/signin">
+            <Link>Sign In</Link>
+          </RouterLink>
+        </Box>
       </Stack>
     </Box>
   )

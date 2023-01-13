@@ -1,10 +1,14 @@
 import { FC } from 'react'
 
+import RouterLink from 'next/link'
+
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 
 // Mui components.
 import Box from '@mui/material/Box'
+import Link from '@mui/material/Link'
 import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 
 // Validation schema
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -83,10 +87,24 @@ const ResetPasswordForm: FC = () => {
         />
       </Stack>
 
-      <Stack spacing={1} sx={{ mt: 2 }}>
+      <Stack spacing={3} sx={{ mt: 2 }}>
         <Button type="submit" variant="contained" disableElevation>
           Send Link
         </Button>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            whiteSpace: 'pre-wrap',
+            justifyContent: 'center',
+          }}
+        >
+          <Typography sx={{ color: 'text.secondary' }}>Remember your password ? </Typography>
+          <RouterLink href="/signin">
+            <Link>Sing In</Link>
+          </RouterLink>
+        </Box>
       </Stack>
     </Box>
   )

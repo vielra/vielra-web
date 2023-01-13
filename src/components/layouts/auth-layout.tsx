@@ -48,7 +48,20 @@ const AuthLayout: FC<Props> = (props) => {
         <Grid item xs={12} lg={6}>
           <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, height: '100%', px: { xs: 3, sm: 5, lg: 7 } }}>
             <AuthHeader />
-            {props.children}
+            <Box
+              sx={{
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {props.children}
+            </Box>
+            {/* Spacing */}
+            <Box sx={{ height: 70 }} />
           </Box>
           {/* <Footer /> */}
         </Grid>

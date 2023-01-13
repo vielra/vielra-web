@@ -7,11 +7,16 @@ import Typography from '@mui/material/Typography'
 
 const SignInPage: NextPageWithLayout<any> = () => {
   return (
-    <Box
-      sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-    >
-      <Typography variant="h3">Sign In</Typography>
-      {/* <Typography></Typography> */}
+    <Box sx={{ width: { xs: '100%', sm: 380 } }}>
+      <Box sx={{ mb: 2 }}>
+        <Typography variant="h3" sx={{ lineHeight: 1.45 }}>
+          Welcome back 👋
+        </Typography>
+        <Typography sx={{ fontSize: '1.05rem', color: 'text.secondary' }}>
+          Enter your details to access your account
+        </Typography>
+        <Typography sx={{ fontSize: '1.05rem', color: 'text.secondary' }}></Typography>
+      </Box>
       <SignInForm />
     </Box>
   )

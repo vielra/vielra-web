@@ -7,11 +7,16 @@ import Typography from '@mui/material/Typography'
 
 const SignUpPage: NextPageWithLayout<any> = () => {
   return (
-    <Box
-      sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-    >
-      <Typography variant="h3">Sign Up</Typography>
-      <Typography>Tell us information about you to create your account</Typography>
+    <Box sx={{ width: { xs: '100%', sm: 380 } }}>
+      <Box sx={{ mb: 2 }}>
+        <Typography variant="h3" sx={{ lineHeight: 1.45 }}>
+          Create Account
+        </Typography>
+        <Typography sx={{ fontSize: '1.05rem', color: 'text.secondary' }}>
+          Create your Vielra account and join with other people
+        </Typography>
+        <Typography sx={{ fontSize: '1.05rem', color: 'text.secondary' }}></Typography>
+      </Box>
       <SignUpForm />
     </Box>
   )

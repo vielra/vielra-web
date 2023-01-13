@@ -1,14 +1,18 @@
 import { FC } from 'react'
 
+import RouterLink from 'next/link'
+
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 
 // Mui components.
 import Box from '@mui/material/Box'
+import Link from '@mui/material/Link'
 import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 
 // Validation schema
-import { yupResolver } from '@hookform/resolvers/yup'
 import { signInValidation } from '../validations'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 // Interfaces
 import { IRequestLogin } from '../interfaces'
@@ -23,8 +27,6 @@ const SignInForm: FC = () => {
   const dispatch = useAppDispatch()
 
   const { auth_login, auth_setToken, auth_setUser } = useAuth()
-
-  // States
 
   /**
    * Initial values
@@ -50,10 +52,7 @@ const SignInForm: FC = () => {
    * Hook form submit handler.
    * @param values
    */
-  const handleSubmitSignIn: SubmitHandler<TInputs> = async (values) => {
-    // const formValues = values
-
-    console.log('---handleSubmitSignIn values', values)
+  const handleSubmitSignUp: SubmitHandler<TInputs> = async (values) => {
     try {
       const response = await auth_login(values).unwrap()
       console.log('---response', response)
@@ -69,24 +68,24 @@ const SignInForm: FC = () => {
   }
 
   return (
-    <Box component="form" onSubmit={handleSubmit(handleSubmitSignIn, handleError)}>
-      <Stack spacing={1} sx={{ width: 300 }}>
+    <Box component="form" onSubmit={handleSubmit(handleSubmitSignUp, handleError)}>
+      <Stack spacing={1}>
         <Controller
           name="email"
           control={control}
           render={({ field }) => (
             <TextField
               fullWidth
+              icon="mdi:email"
               label="Username or email"
-              icon="mdi-light:home"
-              elevation={2}
+              margin="none"
+              elevation={1}
               error={Boolean(errors?.email?.message)}
               helperText={Boolean(errors?.email?.message) && errors?.email?.message}
               {...field}
             />
           )}
         />
-
         <Controller
           name="password"
           control={control}
@@ -94,19 +93,48 @@ const SignInForm: FC = () => {
             <TextField
               fullWidth
               label="Password"
-              elevation={2}
+              icon="mdi:lock"
+              margin="none"
+              elevation={1}
               error={Boolean(errors?.password?.message)}
               helperText={Boolean(errors?.password?.message) && errors?.password?.message}
               {...field}
             />
           )}
         />
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            whiteSpace: 'pre-wrap',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <Typography sx={{ color: 'text.secondary' }}>Forgot password ? </Typography>
+          <RouterLink href="/reset-password">
+            <Link>Reset Password</Link>
+          </RouterLink>
+        </Box>
       </Stack>
-
-      <Stack spacing={1} sx={{ mt: 2 }}>
-        <Button type="submit" variant="contained" disableElevation>
-          Sign In
+      <Stack sx={{ mt: 3 }} spacing={2}>
+        <Button type="submit" variant="contained" fullWidth disableElevation>
+          Sign Up
         </Button>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            whiteSpace: 'pre-wrap',
+            justifyContent: 'center',
+          }}
+        >
+          <Typography>Don’t have an account ? </Typography>
+          <RouterLink href="/signup">
+            <Link>Register here</Link>
+          </RouterLink>
+        </Box>
       </Stack>
     </Box>
   )

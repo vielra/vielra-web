@@ -6,8 +6,7 @@ import MuiButton, { ButtonProps } from '@mui/material/Button'
 type Props = ButtonProps
 
 const Button: FC<Props> = (props) => {
-  const { icon, isError, ...rest } = props
-  return <MuiButton {...rest} />
+  return <MuiButton {...props} />
 }
 
 export { Button }

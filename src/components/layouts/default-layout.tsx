@@ -12,7 +12,7 @@ interface Props {
   children: ReactNode
 }
 
-const DefaultLayout: FC<Props> = (props) => {
+const DefaultLayout: FC<Props> = props => {
   return (
     <main>
       <Header />

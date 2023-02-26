@@ -2,17 +2,14 @@ export interface IUser {
   id: string
   name: string
   email: string
-  photo_url?: string
-  role_id: number
-  role?: null
-  birthday?: string
-  gender?: string
-  phone_number?: string
-  about?: string
+  username: string
+  photo_url: string | null
+  gender: string | null
+  mobile_phone: string | null
+  birthday: string | null
+  about: string | null
+  created_at: string | null
+  updated_at: string | null
   status: string
-  default_avatar_id: string | null
-  avatar_text_color: string
-  store: null
-  availability_status: string
-  created_at: string
+  social_account: unknown
 }

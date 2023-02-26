@@ -12,8 +12,9 @@ interface Props extends Omit<OutlinedTextFieldProps, 'variant'> {
   elevation?: number
 }
 
-const TextField: FC<Props> = (props) => {
-  const { icon, iconImage, elevation, variant, isError, isSuccess, ...rest } = props
+const TextField: FC<Props> = props => {
+  const { icon, iconImage, elevation, variant, isError, isSuccess, ...rest } =
+    props
 
   const getBorderColor = (_isSuccess: boolean): string => {
     return _isSuccess ? 'success.main' : 'transparent'

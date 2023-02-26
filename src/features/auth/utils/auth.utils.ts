@@ -1,14 +1,16 @@
 import Cookies from 'js-cookie'
+import { AppConfig } from '@/features/app/config'
 
-// Constants.
-import { ACCESS_TOKEN_KEY } from '@/features/app/constants'
+const saveAccessToken = (token: string): void => {
+  Cookies.set(AppConfig.KeyAccessToken, token)
+}
 
 const getAccessToken = (): string | undefined => {
-  return Cookies.get(ACCESS_TOKEN_KEY)
+  return Cookies.get(AppConfig.KeyAccessToken)
 }
 
 const removeAccessToken = (): void => {
-  return Cookies.remove(ACCESS_TOKEN_KEY)
+  Cookies.remove(AppConfig.KeyAccessToken)
 }
 
-export { getAccessToken, removeAccessToken }
+export const authUtils = { getAccessToken, removeAccessToken, saveAccessToken }

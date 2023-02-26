@@ -19,7 +19,7 @@ interface Props {
   children: ReactNode
 }
 
-const AuthLayout: FC<Props> = (props) => {
+const AuthLayout: FC<Props> = props => {
   const dispatch = useDispatch()
   const router = useRouter()
 
@@ -32,7 +32,10 @@ const AuthLayout: FC<Props> = (props) => {
   }, [isAuthenticated, router, user])
 
   return (
-    <Box component="main" sx={{ backgroundColor: 'background.default', height: '100vh' }}>
+    <Box
+      component='main'
+      sx={{ backgroundColor: 'background.default', height: '100vh' }}
+    >
       <Grid container spacing={0} sx={{ height: '100%' }}>
         <Grid item xs={12} lg={6} sx={{ display: { xs: 'none', lg: 'block' } }}>
           <Box
@@ -46,7 +49,15 @@ const AuthLayout: FC<Props> = (props) => {
           />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, height: '100%', px: { xs: 3, sm: 5, lg: 7 } }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              flex: 1,
+              height: '100%',
+              px: { xs: 3, sm: 5, lg: 7 },
+            }}
+          >
             <AuthHeader />
             <Box
               sx={{

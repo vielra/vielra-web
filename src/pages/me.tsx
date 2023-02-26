@@ -14,7 +14,7 @@ const MyAccountPage: NextPageWithLayout<unknown> = () => {
   const { isAuthenticated, user } = useAuth()
 
   useEffect(() => {
-    if (!isAuthenticated || !user) {
+    if (!isAuthenticated) {
       router.replace('/')
     }
   }, [isAuthenticated, router, user])
@@ -30,6 +30,6 @@ const MyAccountPage: NextPageWithLayout<unknown> = () => {
   return null
 }
 
-MyAccountPage.getLayout = (page) => <DefaultLayout>{page}</DefaultLayout>
+MyAccountPage.getLayout = page => <DefaultLayout>{page}</DefaultLayout>
 
 export default MyAccountPage

@@ -5,7 +5,7 @@ interface Props extends MenuProps {
   id?: string
 }
 
-const Menu: FC<Props> = (props) => {
+const Menu: FC<Props> = props => {
   const { children, sx, id, ...rest } = props
 
   return (

@@ -5,7 +5,7 @@ import MuiButton, { ButtonProps } from '@mui/material/Button'
 
 type Props = ButtonProps
 
-const Button: FC<Props> = (props) => {
+const Button: FC<Props> = props => {
   return <MuiButton {...props} />
 }
 

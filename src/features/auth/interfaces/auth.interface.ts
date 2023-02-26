@@ -1,3 +1,5 @@
+import { IUser } from '@/features/user/interfaces'
+
 export interface IRequestLogin {
   email: string
   password: string
@@ -13,21 +15,19 @@ export interface IRequestRegister {
   password_confirmation: string
 }
 
-// Login response
-export interface IResponseLogin {
-  success: boolean
-  token_type?: string
-  token: string
-  user: any // Change it later
-}
-
 export interface IRequestSendLinkResetPassword {
   email: string
 }
 
-export interface IResponseSendLinkResetPassword {
-  success: boolean
+// Login response
+export interface IResponseLogin {
+  token: string
+  user: IUser
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IResponseRegister extends IResponseLogin {}
+
+export interface IResponseSendLinkResetPassword {
+  success: boolean
+}

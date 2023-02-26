@@ -1,20 +1,20 @@
-// import { API_BASE_URL } from '@/features/app/constants'
-import { api } from '@/utils/api'
 import * as Yup from 'yup'
+import { HttpClient } from '@/features/app/http'
 
-const checkAvailabilityUsername = async (username: string): Promise<boolean> => {
+const checkAvailabilityUsername = async (
+  username: string
+): Promise<unknown> => {
   console.log('----username', username)
   return new Promise((resolve, reject) => {
-    api
-      .get(`/check-availability-username/${username}`)
-      .then((res) => {
+    HttpClient.post(`/check-availability-username/${username}`)
+      .then(res => {
         if (res.data.availability) {
           resolve(true)
         } else {
           resolve(false)
         }
       })
-      .catch((_) => {
+      .catch(_ => {
         resolve(false)
       })
   })
@@ -49,7 +49,9 @@ const signInValidation = Yup.object().shape({
 })
 
 const resetPasswordValidation = Yup.object().shape({
-  email: Yup.string().email('Please input a valid email associated with your account').required('Email is required'),
+  email: Yup.string()
+    .email('Please input a valid email associated with your account')
+    .required('Email is required'),
 })
 
 export { signUpValidation, signInValidation, resetPasswordValidation }

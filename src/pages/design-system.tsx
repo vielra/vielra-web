@@ -5,12 +5,19 @@ import Box from '@mui/material/Box'
 
 const DesignSystem: NextPageWithLayout<unknown> = () => {
   return (
-    <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <Box
+      sx={{
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       <DevComponents />
     </Box>
   )
 }
 
-DesignSystem.getLayout = (page) => <DefaultLayout>{page}</DefaultLayout>
+DesignSystem.getLayout = page => <DefaultLayout>{page}</DefaultLayout>
 
 export default DesignSystem

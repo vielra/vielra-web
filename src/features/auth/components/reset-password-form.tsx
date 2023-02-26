@@ -17,8 +17,10 @@ import { resetPasswordValidation } from '../validations'
 // Interfaces
 import { IRequestSendLinkResetPassword } from '../interfaces'
 import { TextField, Button } from '@/components/core'
-import { useAuth } from '../hook'
-import { useAppDispatch } from '@/store'
+
+// Hooks
+import { useAppDispatch } from '@/plugins/redux'
+import { useAuth } from '@/features/auth/hook'
 
 type TInputs = IRequestSendLinkResetPassword
 
@@ -50,7 +52,7 @@ const ResetPasswordForm: FC = () => {
    * Hook form submit handler.
    * @param values
    */
-  const handleSubmitSignIn: SubmitHandler<TInputs> = async (values) => {
+  const handleSubmitSignIn: SubmitHandler<TInputs> = async values => {
     // const formValues = values
 
     console.log('---handleSubmitSignIn values', values)
@@ -68,19 +70,24 @@ const ResetPasswordForm: FC = () => {
   }
 
   return (
-    <Box component="form" onSubmit={handleSubmit(handleSubmitSignIn, handleError)}>
+    <Box
+      component='form'
+      onSubmit={handleSubmit(handleSubmitSignIn, handleError)}
+    >
       <Stack spacing={1}>
         <Controller
-          name="email"
+          name='email'
           control={control}
           render={({ field }) => (
             <TextField
               fullWidth
-              label="Your email address"
-              icon="mdi-light:email"
+              label='Your email address'
+              icon='mdi-light:email'
               elevation={2}
               error={Boolean(errors?.email?.message)}
-              helperText={Boolean(errors?.email?.message) && errors?.email?.message}
+              helperText={
+                Boolean(errors?.email?.message) && errors?.email?.message
+              }
               {...field}
             />
           )}
@@ -88,7 +95,7 @@ const ResetPasswordForm: FC = () => {
       </Stack>
 
       <Stack spacing={3} sx={{ mt: 2 }}>
-        <Button type="submit" variant="contained" disableElevation>
+        <Button type='submit' variant='contained' disableElevation>
           Send Link
         </Button>
         <Box
@@ -100,8 +107,10 @@ const ResetPasswordForm: FC = () => {
             justifyContent: 'center',
           }}
         >
-          <Typography sx={{ color: 'text.secondary' }}>Remember your password ? </Typography>
-          <RouterLink href="/signin">
+          <Typography sx={{ color: 'text.secondary' }}>
+            Remember your password ?{' '}
+          </Typography>
+          <RouterLink href='/signin'>
             <Link>Sing In</Link>
           </RouterLink>
         </Box>

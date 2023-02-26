@@ -11,11 +11,12 @@ const ResetPassword: NextPageWithLayout<unknown> = () => {
   return (
     <Box sx={{ width: { xs: '100%', sm: 380 } }}>
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h3" sx={{ mb: 2 }}>
+        <Typography variant='h3' sx={{ mb: 2 }}>
           Forgot password ?
         </Typography>
         <Typography sx={{ fontSize: '1.05rem', color: 'text.secondary' }}>
-          Don’t worry it happens. Enter the email address associated with your account
+          Don’t worry it happens. Enter the email address associated with your
+          account
         </Typography>
       </Box>
       {/* Form */}
@@ -24,6 +25,6 @@ const ResetPassword: NextPageWithLayout<unknown> = () => {
   )
 }
 
-ResetPassword.getLayout = (page) => <AuthLayout>{page}</AuthLayout>
+ResetPassword.getLayout = page => <AuthLayout>{page}</AuthLayout>
 
 export default ResetPassword

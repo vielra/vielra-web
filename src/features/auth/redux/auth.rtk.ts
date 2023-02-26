@@ -20,20 +20,9 @@ import {
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
-  endpoints: (builder) => ({
-    login: builder.mutation<IResponseLogin, IRequestLogin>({
-      query: (body) => ({
-        url: `/auth/login`,
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body,
-      }),
-    }),
+  endpoints: builder => ({
     register: builder.mutation<IResponseLogin, IRequestRegister>({
-      query: (body) => ({
+      query: body => ({
         url: `/auth/register`,
         method: 'POST',
         headers: {
@@ -43,8 +32,11 @@ export const authApi = createApi({
         body,
       }),
     }),
-    sendLinkResetPassword: builder.mutation<IResponseSendLinkResetPassword, IRequestSendLinkResetPassword>({
-      query: (body) => ({
+    sendLinkResetPassword: builder.mutation<
+      IResponseSendLinkResetPassword,
+      IRequestSendLinkResetPassword
+    >({
+      query: body => ({
         url: `/auth/send-reset-password-link`,
         method: 'POST',
         headers: {
@@ -71,4 +63,8 @@ export const authApi = createApi({
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 
-export const { useLoginMutation, useRegisterMutation, useSendLinkResetPasswordMutation, useLogoutMutation } = authApi
+export const {
+  useRegisterMutation,
+  useSendLinkResetPasswordMutation,
+  useLogoutMutation,
+} = authApi

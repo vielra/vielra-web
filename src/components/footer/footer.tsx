@@ -9,7 +9,14 @@ import { APP_NAME } from '@/features/app/constants'
 
 const Footer: FC = () => {
   return (
-    <Box sx={{ height: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <Box
+      sx={{
+        height: 70,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       <Typography>Footer</Typography>
     </Box>
   )

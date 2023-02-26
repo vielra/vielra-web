@@ -48,33 +48,38 @@ const DevComponents: FC = () => {
       </Dialog>
 
       <Button onClick={onOpenMenu}>Open Menu</Button>
-      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={onCloseMEnu} sx={{ width: 300 }}>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={onCloseMEnu}
+        sx={{ width: 300 }}
+      >
         <MenuItem onClick={onCloseMEnu}>Profile</MenuItem>
         <MenuItem onClick={onCloseMEnu}>Settings</MenuItem>
         <MenuItem onClick={onCloseMEnu}>
           <ListItemIcon>
-            <Icon icon="mdi:account" />
+            <Icon icon='mdi:account' />
           </ListItemIcon>
           <ListItemText>Copy</ListItemText>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant='body2' color='text.secondary'>
             ⌘C
           </Typography>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <Icon icon="mdi:database" />
+            <Icon icon='mdi:database' />
           </ListItemIcon>
           <ListItemText>Paste</ListItemText>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant='body2' color='text.secondary'>
             ⌘V
           </Typography>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <Box component="img" src="/images/flags/vietnam.png" />
+            <Box component='img' src='/images/flags/vietnam.png' />
           </ListItemIcon>
           <ListItemText>Paste</ListItemText>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant='body2' color='text.secondary'>
             ⌘V
           </Typography>
         </MenuItem>

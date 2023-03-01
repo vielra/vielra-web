@@ -19,4 +19,11 @@ export const components: Components = {
       },
     },
   },
+  MuiFormHelperText: {
+    styleOverrides: {
+      root: {
+        fontSize: '0.85rem',
+      },
+    },
+  },
 }

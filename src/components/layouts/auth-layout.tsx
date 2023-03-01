@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect } from 'react'
+import { FC, ReactNode } from 'react'
 
 // Mui components
 import Box from '@mui/material/Box'
@@ -6,30 +6,23 @@ import Grid from '@mui/material/Grid'
 
 // Components
 import { AuthHeader } from '@/components/header'
-import { Footer } from '@/components/footer'
+// import { Footer } from '@/components/footer'
 
 // Hooks
-import { useAuth } from '@/features/auth/hook'
-import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 
-// import BgImage from '@/assets/images/ling-tang-rsD_jv_A8Yo-unsplash.jpg'
+const DialogAuth = dynamic(
+  () => import('@/features/auth/components/dialog-auth'),
+  { ssr: false }
+)
 
 interface Props {
   children: ReactNode
 }
 
 const AuthLayout: FC<Props> = props => {
-  const dispatch = useDispatch()
   const router = useRouter()
-
-  const { isAuthenticated, user } = useAuth()
-
-  useEffect(() => {
-    if (isAuthenticated && user) {
-      router.replace('/')
-    }
-  }, [isAuthenticated, router, user])
 
   return (
     <Box
@@ -40,7 +33,8 @@ const AuthLayout: FC<Props> = props => {
         <Grid item xs={12} lg={6} sx={{ display: { xs: 'none', lg: 'block' } }}>
           <Box
             sx={{
-              backgroundImage: `url('/images/ling-tang-rsD_jv_A8Yo-unsplash.jpg')`,
+              background: '#333',
+              backgroundImage: `url('images/macos-colorful-waves-3c.jpeg')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               height: '100%',
@@ -77,6 +71,7 @@ const AuthLayout: FC<Props> = props => {
           {/* <Footer /> */}
         </Grid>
       </Grid>
+      <DialogAuth />
     </Box>
   )
 }

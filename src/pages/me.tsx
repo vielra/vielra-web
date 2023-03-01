@@ -5,29 +5,33 @@ import { NextPageWithLayout } from '@/features/common/interfaces'
 // Mui components
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useAppDispatch } from '@/plugins/redux'
+import { AuthGuard } from '@/components/guards'
 
 const MyAccountPage: NextPageWithLayout<unknown> = () => {
   const router = useRouter()
 
-  const { isAuthenticated, user } = useAuth()
+  const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.replace('/')
-    }
-  }, [isAuthenticated, router, user])
+  const { isAuthenticated, user, auth_logout } = useAuth()
 
-  if (user) {
-    return (
-      <Box sx={{ width: '100%' }}>
-        <Typography>{user.name}</Typography>
-        <Typography>{user.email}</Typography>
-      </Box>
-    )
+  const onClickLogout = (): void => {
+    dispatch(auth_logout())
   }
-  return null
+
+  return (
+    <AuthGuard>
+      {user && (
+        <Box sx={{ width: '100%' }}>
+          <Typography>{user.name}</Typography>
+          <Typography>{user.email}</Typography>
+          <Button onClick={onClickLogout}>Logout</Button>
+        </Box>
+      )}
+    </AuthGuard>
+  )
 }
 
 MyAccountPage.getLayout = page => <DefaultLayout>{page}</DefaultLayout>

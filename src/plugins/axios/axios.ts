@@ -1,7 +1,10 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
 // Interfaces
-import { IBaseApiResponseError } from '@/features/app/interfaces/app-api.interface'
+import {
+  IApiResponseUnprocessableEntity,
+  IBaseApiResponseError,
+} from '@/features/app/interfaces/app-api.interface'
 
 // On request rejected
 const onRequestError = (axiosError: AxiosError): AxiosError => {
@@ -24,7 +27,7 @@ const onResponseSuccess = (axiosResponse: AxiosResponse): AxiosResponse => {
 
 // On response rejected
 const onResponseError = (
-  axiosError: AxiosError
+  axiosError: AxiosError<IApiResponseUnprocessableEntity>
 ): Promise<IBaseApiResponseError> => {
   /** @note logging for development only */
   if (process.env.NODE_ENV === 'development') {
@@ -38,16 +41,19 @@ const onResponseError = (
     if (axiosError?.response?.status === 422) {
       // Do something with response
     }
+
     mapErrorResponse = {
       ...mapErrorResponse,
       status: axiosError.response.status,
-      result: axiosError.response.data,
+      errors: axiosError.response?.data?.errors
+        ? (axiosError.response.data.errors as IBaseApiResponseError['errors'])
+        : ({} as IBaseApiResponseError['errors']),
     }
   } else {
     mapErrorResponse = {
       ...mapErrorResponse,
       message: String(axiosError.message),
-      result: null,
+      errors: {},
     }
   }
 

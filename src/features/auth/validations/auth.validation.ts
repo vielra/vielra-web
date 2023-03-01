@@ -1,40 +1,15 @@
 import * as Yup from 'yup'
-import { HttpClient } from '@/features/app/http'
-
-const checkAvailabilityUsername = async (
-  username: string
-): Promise<unknown> => {
-  console.log('----username', username)
-  return new Promise((resolve, reject) => {
-    HttpClient.post(`/check-availability-username/${username}`)
-      .then(res => {
-        if (res.data.availability) {
-          resolve(true)
-        } else {
-          resolve(false)
-        }
-      })
-      .catch(_ => {
-        resolve(false)
-      })
-  })
-}
 
 const signUpValidation = Yup.object().shape({
   name: Yup.string()
     .required('Name is required')
     .min(3, 'Name must be at least 3 characters')
     .max(200, 'Name must be less  than 20 characters'),
-  username: Yup.string()
-    .min(3, 'Username must be at least 3 characters')
-    .max(20, 'Username must be less  than 20 characters')
-    .required('Username is required')
-    .test('Unique Username', 'Username already in use', function (value) {
-      if (value) {
-        return checkAvailabilityUsername(value as string)
-      }
-      return false
-    }),
+  // username: Yup.string()
+  //   .min(3, 'Username must be at least 3 characters')
+  //   .max(20, 'Username must be less  than 20 characters')
+  //   .required('Username is required'),
+
   email: Yup.string().required('Email is required').email(),
   password: Yup.string().required('Please input password.'),
   password_confirmation: Yup.string()

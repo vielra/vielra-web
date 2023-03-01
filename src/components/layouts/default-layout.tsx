@@ -1,12 +1,18 @@
 import { FC, ReactNode } from 'react'
-import { useRouter } from 'next/router'
 
-import { useDispatch } from 'react-redux'
+// @mui
+import Box from '@mui/material/Box'
 
 // Components
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
-// import { Dialog } from '@/components/core/dialog'
+import { DialogUserLoggedOut } from '@/features/auth/components'
+import dynamic from 'next/dynamic'
+
+const DialogAuth = dynamic(
+  () => import('@/features/auth/components/dialog-auth'),
+  { ssr: false }
+)
 
 interface Props {
   children: ReactNode
@@ -14,11 +20,13 @@ interface Props {
 
 const DefaultLayout: FC<Props> = props => {
   return (
-    <main>
+    <Box component='main'>
       <Header />
       {props.children}
       <Footer />
-    </main>
+      <DialogAuth />
+      <DialogUserLoggedOut />
+    </Box>
   )
 }
 

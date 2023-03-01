@@ -11,6 +11,12 @@ import { MuiThemeProvider } from '@/plugins/mui/components'
 // Redux provider.
 import { ReduxProvider } from '@/plugins/redux/components'
 
+// App config
+import { AppConfig } from '@/features/app/config'
+
+// Styles
+// import '../styles/global.styles.css'
+
 // prepend: true moves MUI styles to the top of the <head> so they're loaded first.
 // It allows developers to easily override MUI styles with other styling solutions, like CSS modules.
 function createEmotionCache(): EmotionCache {
@@ -34,8 +40,10 @@ const App: FC<AppPropsWithLayout> = (props: AppPropsWithLayout) => {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
+        <link rel='icon' type='image/png' href={AppConfig.AppFavicon} />
         <meta name='viewport' content='initial-scale=1, width=device-width' />
-        <title>Vielra</title>
+        <meta name='description' content={AppConfig.AppDescription} />
+        <title>{AppConfig.AppName}</title>
       </Head>
       <ReduxProvider>
         <MuiThemeProvider>

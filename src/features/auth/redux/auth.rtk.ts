@@ -1,15 +1,11 @@
 // Redux toolkit
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-// Constants.
-import { API_BASE_URL } from '@/features/app/constants'
-
-// Utils.
-import { getAccessToken } from '@/features/auth/utils'
+// Utils
+import { authUtils } from '../utils'
 
 // Interfaces.
 import {
-  IRequestLogin,
   IRequestRegister,
   IRequestSendLinkResetPassword,
   IResponseLogin,
@@ -19,7 +15,9 @@ import {
 // Define a service using a base URL and expected endpoints
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: process.env.NEXT_PUBLIC_VIELRA_API_BASE_URL,
+  }),
   endpoints: builder => ({
     register: builder.mutation<IResponseLogin, IRequestRegister>({
       query: body => ({
@@ -54,7 +52,7 @@ export const authApi = createApi({
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: { access_token: getAccessToken() },
+        body: { access_token: authUtils.getAccessToken() },
       }),
     }),
   }),

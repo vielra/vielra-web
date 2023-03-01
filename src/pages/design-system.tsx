@@ -18,6 +18,6 @@ const DesignSystem: NextPageWithLayout<unknown> = () => {
   )
 }
 
-DesignSystem.getLayout = page => <DefaultLayout>{page}</DefaultLayout>
+DesignSystem.getLayout = page => <>{page}</>
 
 export default DesignSystem

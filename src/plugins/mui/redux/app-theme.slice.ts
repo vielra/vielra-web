@@ -11,7 +11,7 @@ interface AppThemeState {
 
 // Initial state
 const initialState: AppThemeState = {
-  appTheme_paletteMode: 'light',
+  appTheme_paletteMode: 'dark',
 }
 
 // Actual Slice

@@ -8,12 +8,15 @@ import CssBaseline from '@mui/material/CssBaseline'
 import merge from 'lodash/merge'
 
 // Theme mui-config
-import { paletteBase } from '@/plugins/mui/config/theme.palette-base'
-import { paletteDark } from '@/plugins/mui/config/theme.palette-dark'
-import { paletteLight } from '@/plugins/mui/config/theme.palette-light'
-import { typography } from '@/plugins/mui/config/theme.typography'
-import { components } from '@/plugins/mui/config/theme.components'
-import { shadows } from '@/plugins/mui/config/theme.shadows'
+import {
+  paletteBase,
+  paletteDark,
+  paletteLight,
+  typography,
+  components,
+  shadows,
+  shape,
+} from '@/plugins/mui/config'
 
 // Hooks
 import { useAppTheme } from '@/plugins/mui/hooks'
@@ -36,6 +39,7 @@ const MuiThemeProvider: FC<MuiThemeProviderProps> = ({ children }) => {
       typography,
       shadows,
       components,
+      shape,
     })
   }, [appTheme_paletteMode])
 

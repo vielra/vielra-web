@@ -8,8 +8,8 @@ export interface IRequestLogin {
 
 export interface IRequestRegister {
   name: string
-  username: string
-  phone_number?: string
+  username?: string // Optional
+  phone_number?: string // Optional
   email: string
   password: string
   password_confirmation: string
@@ -31,3 +31,10 @@ export interface IResponseRegister extends IResponseLogin {}
 export interface IResponseSendLinkResetPassword {
   success: boolean
 }
+
+export type SocialAuthProvider =
+  | 'facebook'
+  | 'github'
+  | 'google'
+  | 'instagram'
+  | 'linkedin'

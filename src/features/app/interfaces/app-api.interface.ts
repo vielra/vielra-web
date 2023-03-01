@@ -14,10 +14,10 @@ export interface IApiPagination<T> {
   meta: IApiPaginationMeta
 }
 
-export interface IBaseApiResponseError<T = unknown> {
-  message: string | null
+export interface IBaseApiResponseError {
   status?: number
-  result: T
+  message: string | null
+  errors: IApiResponseUnprocessableEntity['errors']
 }
 
 export interface IApiResponseWithPagination<T> {

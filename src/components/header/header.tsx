@@ -4,9 +4,6 @@ import { FC } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
-// Constants
-import { APP_NAME } from '@/features/app/constants'
-
 const Header: FC = () => {
   return (
     <Box

@@ -1,7 +1,6 @@
 import { FC, forwardRef, ReactElement, ReactNode } from 'react'
 
 // Mui components.
-import Zoom, { ZoomProps } from '@mui/material/Zoom'
 import Slide, { SlideProps } from '@mui/material/Slide'
 import MuiDialog, { DialogProps } from '@mui/material/Dialog'
 import { Box, IconButton, styled, Typography, SxProps } from '@mui/material'
@@ -15,14 +14,15 @@ import { Button } from '../button'
 
 // Transition component.
 // eslint-disable-next-line react/display-name
-const Transition = forwardRef<unknown, ZoomProps>(
-  (props, ref): ReactElement => <Zoom ref={ref} {...props} />
+const Transition = forwardRef<unknown, SlideProps>(
+  (props, ref): ReactElement => <Slide ref={ref} direction='up' {...props} />
 )
 
 const DialogTitle = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2),
 }))
 const DialogContent = styled(Box)(({ theme }) => ({
+  height: '100%',
   '& p': {
     marginBottom: theme.spacing(1.5),
     '&:last-child': {
@@ -82,20 +82,17 @@ const Dialog: FC<Props> = props => {
         elevation: 1,
         sx: {
           position: 'relative',
-          borderRadius: 2,
+          borderRadius: 1.6,
           m: 0,
           px: {
-            xs: 6,
+            xs: 3,
             md: 9,
           },
           py: {
-            xs: 3,
+            xs: 2,
             md: 6,
           },
-          // p: {
-          //   xs: (theme) => theme.spacing(4, 6),
-          //   md: (theme) => theme.spacing(7, 9),
-          // },
+
           ...paperStyles,
         },
       }}

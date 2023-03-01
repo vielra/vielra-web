@@ -1,6 +1,4 @@
-/* eslint-disable @next/next/no-sync-scripts */
-/* eslint-disable @next/next/no-css-tags */
-/* eslint-disable @next/next/google-font-display */
+import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 export default class MyDocument extends Document {
@@ -9,8 +7,8 @@ export default class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head>
+          <meta charSet='utf-8' />
           <base href={process.env.PUBLIC_URL} />
-          <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link
             rel='preconnect'
             href='https://fonts.gstatic.com'

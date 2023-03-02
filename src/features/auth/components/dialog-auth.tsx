@@ -20,8 +20,8 @@ import { useWindowSize } from 'react-use'
 import { useAuth } from '@/features/auth/hook'
 import { useAppDispatch } from '@/plugins/redux'
 
-const AuthSocialButtonHorizontal = dynamic(
-  () => import('@/features/auth/components/auth-social-button-horizontal'),
+const AuthSocialButtonVertical = dynamic(
+  () => import('@/features/auth/components/auth-social-button-vertical'),
   { ssr: false }
 )
 
@@ -89,7 +89,7 @@ const DialogAuth: FC = () => {
         </Box>
 
         <Box sx={{ mb: 4, width: '100%' }}>
-          <AuthSocialButtonHorizontal />
+          <AuthSocialButtonVertical />
         </Box>
 
         <Box>

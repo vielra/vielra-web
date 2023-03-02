@@ -3,7 +3,14 @@ import { FC, forwardRef, ReactElement, ReactNode } from 'react'
 // Mui components.
 import Slide, { SlideProps } from '@mui/material/Slide'
 import MuiDialog, { DialogProps } from '@mui/material/Dialog'
-import { Box, IconButton, styled, Typography, SxProps } from '@mui/material'
+import {
+  Box,
+  IconButton,
+  styled,
+  Typography,
+  SxProps,
+  useTheme,
+} from '@mui/material'
 
 // Mui icons.
 import CloseIcon from '@mui/icons-material/Close'
@@ -51,6 +58,7 @@ interface Props extends Omit<DialogProps, 'title'> {
 }
 
 const Dialog: FC<Props> = props => {
+  const theme = useTheme()
   const {
     sx,
     open,
@@ -132,6 +140,10 @@ const Dialog: FC<Props> = props => {
         <IconButton
           onClick={onClose as () => void}
           sx={{
+            backgroundColor: theme.palette.action.hover,
+            '&:hover': {
+              backgroundColor: theme.palette.action.active,
+            },
             position: 'absolute',
             top: theme => theme.spacing(2.6),
             right: theme => theme.spacing(3),

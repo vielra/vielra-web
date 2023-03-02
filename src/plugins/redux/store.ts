@@ -22,13 +22,14 @@ import storage from 'redux-persist/lib/storage'
 import { rootReducer } from './reducers'
 import { appThemeSlice } from '@/plugins/mui/redux'
 import { persistAuthSlice } from '@/features/auth/redux'
+import { persistAppSlice } from '@/features/app/redux'
 
 // Config for Redux Persist
 const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  whitelist: [persistAuthSlice.name, appThemeSlice.name],
+  whitelist: [persistAuthSlice.name, appThemeSlice.name, persistAppSlice.name],
 }
 
 // Listener Middleware

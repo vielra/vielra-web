@@ -15,7 +15,10 @@ import { ReduxProvider } from '@/plugins/redux/components'
 import { AppConfig } from '@/features/app/config'
 
 // Styles
-// import '../styles/global.styles.css'
+import { appWithTranslation } from 'next-i18next'
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+// const { i18n } = require('../../next-i18next.config')
 
 // prepend: true moves MUI styles to the top of the <head> so they're loaded first.
 // It allows developers to easily override MUI styles with other styling solutions, like CSS modules.
@@ -54,4 +57,4 @@ const App: FC<AppPropsWithLayout> = (props: AppPropsWithLayout) => {
   )
 }
 
-export default App
+export default appWithTranslation(App)

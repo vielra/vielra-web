@@ -1,25 +1,31 @@
-import React, { FC, MouseEvent, useState } from 'react'
+import React, { FC, MouseEvent, useCallback, useState } from 'react'
 import Box from '@mui/material/Box'
 import { Button } from '@/components/core/button'
 import { Dialog } from '@/components/core/dialog'
-import { CircularProgress } from '@/components/core/circular-progress'
-import { Loading } from '@/components/shared/loading'
+
 import { Menu } from '@/components/core/menu'
 import MenuItem from '@mui/material/MenuItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 
-import ContentCut from '@mui/icons-material/ContentCut'
-import ContentCopy from '@mui/icons-material/ContentCopy'
-import ContentPaste from '@mui/icons-material/ContentPaste'
 import { Icon } from '@iconify/react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { resetPasswordValidation } from '../../auth/validations'
-import { Select } from '../../../components/core/select'
+import { Select } from '@/components/core/select'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import { TextField } from '../../../components/core'
+import { TextField } from '@/components/core'
+import { MenuPopover } from '@/components/core/menu-popover'
 import Stack from '@mui/material/Stack'
+import { AppLocale } from '@/features/app/interfaces'
+import { useAppDispatch } from '@/plugins/redux'
+import { useApp } from '@/features/app/hooks'
+import { AppLibs } from '@/features/app/libs'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { i18n } = require('../../../../next-i18next.config')
 
 // Then use Icon component with icon name as icon parameter:
 
@@ -257,6 +263,24 @@ const users = [
 ]
 
 const DevComponents: FC = () => {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+
+  const { t } = useTranslation()
+
+  const onChangeLanguage = useCallback(
+    (locale: string) => {
+      const path = router.asPath
+
+      handleClose()
+      dispatch(persistApp_setLocale(locale))
+
+      return router.push(path, path, { locale })
+    },
+    [router]
+  )
+
+  const { persistApp_setLocale } = useApp()
   /**
    * Initial values
    */
@@ -293,7 +317,15 @@ const DevComponents: FC = () => {
     console.log('❌ objErrors', objErrors)
   }
 
-  // const [value, setValue] = useState<string>('')
+  const [anchorMenuLang, setAnchorMenuLang] = useState<HTMLElement | null>(null)
+
+  const handleOpen = (event: MouseEvent<HTMLButtonElement>): void => {
+    setAnchorMenuLang(event.currentTarget)
+  }
+
+  const handleClose = (): void => {
+    setAnchorMenuLang(null)
+  }
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
 
@@ -310,6 +342,22 @@ const DevComponents: FC = () => {
   return (
     <Box sx={{ width: 340, mx: 'auto' }}>
       <Button onClick={() => setVisibleDialog(true)}>Open modal</Button>
+
+      <Button onClick={handleOpen}>Set Language</Button>
+      <MenuPopover
+        open={Boolean(anchorMenuLang)}
+        anchorEl={anchorMenuLang}
+        onClose={handleClose}
+      >
+        {AppLibs.dropdownAppLocales.map((x) => (
+          <MenuItem key={x.value} onClick={() => onChangeLanguage(x.value)}>
+            <ListItemIcon>
+              <Box component='img' src={`/images/flags/${x.value}.png`} />
+            </ListItemIcon>
+            <ListItemText>{x.label}</ListItemText>
+          </MenuItem>
+        ))}
+      </MenuPopover>
 
       {/* <CircularProgress /> */}
       {/*<Loading />*/}

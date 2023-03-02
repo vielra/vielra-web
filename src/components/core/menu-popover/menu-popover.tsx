@@ -14,7 +14,7 @@ const ArrowStyle = styled('span', {
 
   const POSITION = -(SIZE / 2)
 
-  const borderStyle = `solid 1px ${theme.palette.grey[500]}`
+  const borderStyle = `solid 1px transparent`
 
   const topStyle = {
     borderRadius: '0 0 3px 0',
@@ -49,7 +49,6 @@ const ArrowStyle = styled('span', {
       height: SIZE,
       content: "''",
       position: 'absolute',
-
       transform: 'rotate(-135deg)',
       background: theme.palette.background.paper,
     },
@@ -108,9 +107,11 @@ const MenuPopover: FC<MenuPopoverProps> = props => {
       PaperProps={{
         sx: {
           p: 1,
-          width: 200,
+          minWidth: 100,
           overflow: 'inherit',
-          boxShadow: '0px 0px 50px 0px rgba(82, 63, 105, 0.15)',
+          boxShadow: 2,
+          backgroundColor: 'background.paper',
+          backgroundImage: 'none',
           ...sx,
         },
       }}

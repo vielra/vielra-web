@@ -9,4 +9,6 @@ export const APP_ROUTE_PATHS = {
   SignUpWithParamsAppID: `/sign-up?app_id=${AppConfig.AppId}`,
   PasswordRecovery: '/password-recovery',
   PasswordRecoveryWithParamsAppID: `/password-recovery?app_id=${AppConfig.AppId}`,
+  Phrasebook: '/phrasebook',
+  PhrasebookPhraseList: '/phrasebook/list',
 }

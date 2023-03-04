@@ -17,6 +17,9 @@ import { AppConfig } from '@/features/app/config'
 // Styles
 import { appWithTranslation } from 'next-i18next'
 
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 // const { i18n } = require('../../next-i18next.config')
 

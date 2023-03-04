@@ -349,7 +349,7 @@ const DevComponents: FC = () => {
         anchorEl={anchorMenuLang}
         onClose={handleClose}
       >
-        {AppLibs.dropdownAppLocales.map((x) => (
+        {AppLibs.dropdownAppLocales.map(x => (
           <MenuItem key={x.value} onClick={() => onChangeLanguage(x.value)}>
             <ListItemIcon>
               <Box component='img' src={`/images/flags/${x.value}.png`} />

@@ -17,10 +17,12 @@ const getLanguageName = (locale: string): string => {
   }
 }
 
-const dropdownAppLocales: IDropdown<string>[] = i18n.locales.map((l: string) => ({
-  label: getLanguageName(l),
-  value: l,
-}))
+const dropdownAppLocales: IDropdown<string>[] = i18n.locales.map(
+  (l: string) => ({
+    label: getLanguageName(l),
+    value: l,
+  })
+)
 
 export const AppLibs = {
   dropdownAppLocales,

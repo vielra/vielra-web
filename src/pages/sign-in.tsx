@@ -22,7 +22,7 @@ const SignInPage: NextPageWithLayout<unknown> = () => {
             alignItems='center'
             justifyContent='center'
           >
-            <Image src={'/' + AppConfig.AppLogo} height={42} width={42} />
+            <Image src={AppConfig.AppLogo} height={42} width={42} />
           </Box>
           <Typography variant='h3' sx={{ lineHeight: 1.45 }}>
             Welcome back 👋

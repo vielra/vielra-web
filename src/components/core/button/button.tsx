@@ -9,12 +9,18 @@ export const StyledButton = styled(MuiButton)({
   fontWeight: 500,
   whiteSpace: 'pre-wrap',
 
-  '&.MuiButton-sizeLarge': {
-    fontSize: '1rem',
-    padding: '8px 26px',
+  // small
+  '&.MuiButton-sizeSmall': {
+    padding: '4px 14px',
   },
 
-  // another styles
+  '&.MuiButton-sizeMedium': {
+    padding: '6px 14px',
+  },
+
+  '&.MuiButton-sizeLarge': {
+    padding: '8px 26px',
+  },
 })
 
 const Button: FC<Props> = props => {

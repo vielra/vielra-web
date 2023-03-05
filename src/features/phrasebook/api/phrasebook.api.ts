@@ -1,12 +1,14 @@
 import { HttpClient } from '@/features/app/http'
-import { authUtils } from '@/features/auth/utils'
 import {
   IPhrase,
   IPhrasebook,
+  IPhraseModel,
   IPhraseCategory,
-  IRequestCreatePhrase,
   IRequestGetPhrases,
 } from '@/features/phrasebook/intefaces'
+
+// utils
+import { AppUtils } from '@/features/app/utils'
 
 const phrasebookApi = {
   getPhrases: async (params: IRequestGetPhrases): Promise<IPhrasebook> => {
@@ -19,11 +21,9 @@ const phrasebookApi = {
     return response.data
   },
 
-  createPhrase: async (body: IRequestCreatePhrase): Promise<IPhrase> => {
+  createPhrase: async (body: IPhraseModel): Promise<IPhrase> => {
     const response = await HttpClient.post('/phrasebook/phrase', body, {
-      headers: {
-        Authorization: `Bearer ${authUtils.getAccessToken()}`,
-      },
+      headers: AppUtils.authRequestTokenHeader(),
     })
     return response.data
   },

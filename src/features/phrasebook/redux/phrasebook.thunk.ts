@@ -1,7 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { phrasebookApi } from '@/features/phrasebook/api'
 import { IBaseApiResponseError } from '@/features/app/interfaces'
-import { IRequestGetPhrases } from '@/features/phrasebook/intefaces'
+import {
+  IPhraseModel,
+  IRequestGetPhrases,
+} from '@/features/phrasebook/intefaces'
 
 const phrasebook_getPhrases = createAsyncThunk(
   '@phrasebook/getPhrases',
@@ -25,4 +28,19 @@ const phrasebook_getCategories = createAsyncThunk(
   }
 )
 
-export { phrasebook_getPhrases, phrasebook_getCategories }
+const phrasebook_createPhrase = createAsyncThunk(
+  '@phrasebook/createPhrase',
+  async (body: IPhraseModel, { rejectWithValue }) => {
+    try {
+      return await phrasebookApi.createPhrase(body)
+    } catch (err) {
+      return rejectWithValue(err as IBaseApiResponseError)
+    }
+  }
+)
+
+export {
+  phrasebook_getPhrases,
+  phrasebook_getCategories,
+  phrasebook_createPhrase,
+}

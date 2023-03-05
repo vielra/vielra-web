@@ -5,6 +5,7 @@ import { RootState } from '@/plugins/redux'
 
 // thunk actions
 import {
+  phrasebook_createPhrase,
   phrasebook_getCategories,
   phrasebook_getPhrases,
 } from './phrasebook.thunk'
@@ -40,6 +41,12 @@ export interface PhrasebookState {
   phrasebook_phrasesData: {
     [key: string]: IPhrasebook
   }
+
+  phrasebook_formIsDirty: boolean
+
+  phrasebook_createIsLoading: boolean
+  phrasebook_createIsError: boolean
+  phrasebook_createIsSuccess: boolean
 }
 
 // Initial state
@@ -53,6 +60,12 @@ const initialState: PhrasebookState = {
   phrasebook_phrasesIsLoading: false,
   phrasebook_phrasesIsError: false,
   phrasebook_phrasesData: {},
+
+  phrasebook_formIsDirty: false,
+
+  phrasebook_createIsLoading: false,
+  phrasebook_createIsError: false,
+  phrasebook_createIsSuccess: false,
 }
 
 // Actual Slice
@@ -60,8 +73,16 @@ export const phrasebookSlice = createSlice({
   name: 'phrasebook',
   initialState,
   reducers: {
-    auth_setOpenDialogAuth(state, action) {
+    phrasebook_setOpenDialogFormPhrase(state, action) {
       state.phrasebook_isOpenDialogFormPhrase = action.payload
+    },
+    phrasebook_setFormIsDirty(state, action) {
+      state.phrasebook_formIsDirty = action.payload
+    },
+    phrasebook_resetCreatePhraseState(state) {
+      state.phrasebook_createIsLoading = false
+      state.phrasebook_createIsError = false
+      state.phrasebook_createIsSuccess = false
     },
   },
   extraReducers: builder => {
@@ -94,12 +115,26 @@ export const phrasebookSlice = createSlice({
       state.phrasebook_phrasesIsLoading = false
 
       if (action.payload?.category && action.payload?.phrases) {
-        console.log('---action phrasebook_getPhrases.fulfilled', action)
         state.phrasebook_phrasesData = {
           ...state.phrasebook_phrasesData,
           [action.payload.category.slug]: action.payload,
         }
       }
+    })
+
+    // Create phrase
+    builder.addCase(phrasebook_createPhrase.pending, state => {
+      state.phrasebook_createIsLoading = true
+      state.phrasebook_createIsError = false
+    })
+    builder.addCase(phrasebook_createPhrase.rejected, state => {
+      state.phrasebook_createIsLoading = false
+      state.phrasebook_createIsError = true
+    })
+    builder.addCase(phrasebook_createPhrase.fulfilled, (state, action) => {
+      state.phrasebook_createIsError = false
+      state.phrasebook_createIsLoading = false
+      state.phrasebook_createIsSuccess = true
     })
   },
 })

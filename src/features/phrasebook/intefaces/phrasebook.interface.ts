@@ -40,7 +40,7 @@ export interface IPhrasebook {
   phrases: IPhrase[]
 }
 
-export interface IRequestCreatePhrase {
+export interface IPhraseModel {
   category_id: string
   text_vi: string
   text_en: string
@@ -48,6 +48,9 @@ export interface IRequestCreatePhrase {
   confirmed: boolean
   mark_as_created_by_system: boolean
 }
+
+// eslint-disable-next-line
+export interface IRequestPhrase extends IPhraseModel {}
 
 export interface IRequestGetPhrases {
   category: string

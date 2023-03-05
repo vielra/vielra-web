@@ -22,10 +22,7 @@ import { usePhrasebook } from '@/features/phrasebook/hooks'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import PhraseContainer from '@/features/phrasebook/components/phrase/phrase-container'
-import {
-  PhraseHeader,
-  PhraseHeaderSkeleton,
-} from '@/features/phrasebook/components/phrase'
+import { PhraseHeader } from '@/features/phrasebook/components/phrase'
 
 const PhrasebookPhraseListPage: NextPageWithLayout<unknown> = () => {
   const dispatch = useAppDispatch()
@@ -81,16 +78,13 @@ const PhrasebookPhraseListPage: NextPageWithLayout<unknown> = () => {
 
   return (
     <Box>
-      {isFirstLoad ? (
-        <PhraseHeaderSkeleton />
-      ) : (
-        <PhraseHeader
-          categories={phrasebook_categoriesData}
-          phrasebook={phrasebook_phrasesData?.[queryCategorySug as string]}
-          activeTab={activeTab}
-          setActiveTab={val => setActiveTab(val)}
-        />
-      )}
+      <PhraseHeader
+        categories={phrasebook_categoriesData}
+        phrasebook={phrasebook_phrasesData?.[queryCategorySug as string]}
+        activeTab={activeTab}
+        setActiveTab={val => setActiveTab(val)}
+        isLoading={isFirstLoad}
+      />
       <Container>
         <PhraseContainer
           isLoading={isFirstLoad}

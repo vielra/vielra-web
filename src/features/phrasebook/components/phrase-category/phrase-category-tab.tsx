@@ -1,4 +1,4 @@
-import React, { FC, memo, SyntheticEvent } from 'react'
+import React, { FC, memo, SyntheticEvent, useState } from 'react'
 import Tabs, { tabsClasses } from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
@@ -31,13 +31,13 @@ const PhraseCategoryTab: FC<Props> = memo(
     const { locale } = useApp()
 
     const handleChange = (event: SyntheticEvent, newValue: number): void => {
+      setActiveTab(newValue)
       const cat = categories.find((x, index) => index === newValue)
       if (cat) {
         router.push(
           APP_ROUTE_PATHS.PhrasebookPhraseList + '?category=' + cat.slug
         )
       }
-      setActiveTab(newValue)
     }
 
     return (
@@ -62,6 +62,8 @@ const PhraseCategoryTab: FC<Props> = memo(
             {categories.map(x => (
               <StyledTab
                 key={x.id}
+                disableRipple
+                disableFocusRipple
                 label={PhrasebookUtils.getPhraseCategoryName(x, locale)}
                 iconPosition='start'
                 icon={

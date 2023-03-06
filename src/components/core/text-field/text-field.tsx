@@ -5,6 +5,7 @@ import InputLabel from '@mui/material/InputLabel'
 import FormHelperText from '@mui/material/FormHelperText'
 import FormControl from '@mui/material/FormControl'
 import { Iconify } from '@/components/core/iconify'
+import { SxProps } from '@mui/material'
 
 interface Props extends OutlinedInputProps {
   icon?: string
@@ -12,11 +13,22 @@ interface Props extends OutlinedInputProps {
   variant?: string
   elevation?: number
   helperText?: string | null | false
+  inputIconStyles?: SxProps
 }
 
 const TextField: FC<Props> = props => {
-  const { id, label, error, icon, iconImage, elevation, helperText, ...rest } =
-    props
+  const {
+    id,
+    label,
+    error,
+    icon,
+    size,
+    iconImage,
+    elevation,
+    helperText,
+    inputIconStyles,
+    ...rest
+  } = props
 
   return (
     <Box sx={{ position: 'relative' }}>
@@ -34,6 +46,7 @@ const TextField: FC<Props> = props => {
             color: 'primary.contrastText',
             position: 'relative',
             zIndex: 1,
+            ...inputIconStyles,
           }}
         >
           <Iconify icon={icon as string} />
@@ -60,17 +73,21 @@ const TextField: FC<Props> = props => {
           id={id}
           label={label}
           error={error}
+          size={size}
           sx={{
             backgroundColor: 'background.paper',
+            fontSize: '0.95rem',
+            boxShadow: elevation,
+            borderRadius: 1,
+
+            ...(size !== 'small' && {
+              padding: '12px 18px',
+            }),
+
             '& .MuiInputBase-input': {
-              fontSize: '0.95rem',
-              boxShadow: elevation,
-              backgroundColor: 'background.paper',
-              borderRadius: 1,
-              '&:not(.MuiInputBase-inputSizeSmall)': {
-                padding: '12px 18px',
-              },
+              padding: 0,
             },
+
             '& .MuiOutlinedInput-notchedOutline': {
               borderColor: 'transparent',
             },

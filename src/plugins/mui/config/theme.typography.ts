@@ -8,31 +8,31 @@ const typography: TypographyOptions = {
   fontFamily,
   fontWeightLight: 300,
   fontWeightRegular: 400,
-  fontWeightMedium: 400,
-  fontWeightBold: 700,
+  fontWeightMedium: 500,
+  fontWeightBold: 600,
   h1: {
-    fontWeight: 600,
+    fontWeight: 500,
     fontSize: 34,
   },
   h2: {
-    fontWeight: 600,
+    fontWeight: 500,
     fontSize: 30,
   },
   h3: {
     fontSize: 28,
-    fontWeight: 600,
+    fontWeight: 500,
   },
   h4: {
     fontSize: 24,
-    fontWeight: 600,
+    fontWeight: 500,
   },
   h5: {
     fontSize: 20,
-    fontWeight: 600,
+    fontWeight: 500,
   },
   h6: {
     fontSize: 16,
-    fontWeight: 600,
+    fontWeight: 500,
   },
   body1: {
     fontSize: '0.875rem',

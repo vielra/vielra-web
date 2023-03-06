@@ -83,7 +83,6 @@ const Dialog: FC<Props> = props => {
       fullWidth
       maxWidth={maxWidth}
       open={open}
-      keepMounted
       onClose={onClose}
       TransitionComponent={Transition}
       PaperProps={{

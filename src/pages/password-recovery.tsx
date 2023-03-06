@@ -34,11 +34,11 @@ const PasswordRecovery: NextPageWithLayout<unknown> = () => {
           <Stack direction='column' spacing={2} sx={{ mb: 2 }}>
             <BoxIcon icon='eva:lock-outline' size='extra-large' />
             <Box>
-              <Typography variant='h3'>
+              <Typography variant='h3' gutterBottom>
                 Forgot Password ?{' '}
-                <Typography component='span' variant='h3' color='text.disabled'>
-                  Don’t worry it happens.
-                </Typography>
+              </Typography>
+              <Typography component='span' variant='h3' color='text.disabled'>
+                Don’t worry it happens.
               </Typography>
             </Box>
             <Typography sx={{ color: 'text.secondary' }}>

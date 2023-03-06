@@ -29,4 +29,16 @@ const resetPasswordValidation = Yup.object().shape({
     .required('Email is required'),
 })
 
-export { signUpValidation, signInValidation, resetPasswordValidation }
+const createNewPasswordValidation = Yup.object().shape({
+  password: Yup.string().required('Please input password.'),
+  password_confirmation: Yup.string()
+    .required('Please retype your password.')
+    .oneOf([Yup.ref('password')], 'Your passwords do not match.'),
+})
+
+export {
+  signUpValidation,
+  signInValidation,
+  resetPasswordValidation,
+  createNewPasswordValidation,
+}

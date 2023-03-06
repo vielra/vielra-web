@@ -11,12 +11,14 @@ const { i18n } = require('../../../../next-i18next.config')
 interface PersistAppState {
   persistApp_locale: string
   persistApp_locales: string[]
+  persistApp_displayTypePhraseList: 'grid' | 'list' | string
 }
 
 // Initial state
 const initialState: PersistAppState = {
   persistApp_locale: i18n.defaultLocale,
   persistApp_locales: i18n.locales,
+  persistApp_displayTypePhraseList: 'grid', // default 'grid'
 }
 
 // Actual Slice
@@ -26,6 +28,9 @@ export const persistAppSlice = createSlice({
   reducers: {
     persistApp_setLocale(state, action) {
       state.persistApp_locale = action.payload
+    },
+    persistApp_setDisplayTypePhraseList(state, action) {
+      state.persistApp_displayTypePhraseList = action.payload
     },
   },
 })

@@ -41,7 +41,6 @@ const UserAvatar: FC<Props> = props => {
         fontWeight: 'bold',
         ...sx,
       }}
-      s
       src={avatar as string}
     >
       {CommonUtils.getInitialsName(user.name)}

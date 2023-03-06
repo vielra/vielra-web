@@ -9,6 +9,7 @@ import {
   auth_register,
   auth_logout,
   auth_loginWithSocialAccount,
+  auth_resetPassword,
 } from './auth.thunk'
 import { authUtils } from '@/features/auth/utils'
 
@@ -36,7 +37,7 @@ export const persistAuthSlice = createSlice({
     auth_setToken(state, action) {
       state.token = action.payload
     },
-    auth_reset: () => initialState,
+    auth_resetPersistAuth: () => initialState,
   },
 
   extraReducers: builder => {
@@ -58,6 +59,19 @@ export const persistAuthSlice = createSlice({
 
     // External login with social account
     builder.addCase(auth_loginWithSocialAccount.fulfilled, (state, action) => {
+      if (action.payload?.user && action.payload?.token) {
+        state.user = action.payload.user as IUser
+        state.token = action.payload.token as string
+        authUtils.saveAccessToken(action.payload.token)
+      }
+    })
+
+    // Password reset
+    /**
+     * When password reset is success
+     * Set user & token
+     */
+    builder.addCase(auth_resetPassword.fulfilled, (state, action) => {
       if (action.payload?.user && action.payload?.token) {
         state.user = action.payload.user as IUser
         state.token = action.payload.token as string

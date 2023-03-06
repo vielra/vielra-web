@@ -10,6 +10,7 @@ import {
   auth_sendRecoveryLink,
   auth_logout,
   auth_loginWithSocialAccount,
+  auth_resetPassword,
 } from './auth.thunk'
 
 // utils
@@ -49,6 +50,11 @@ export interface AuthState {
   auth_recoveryErrorMessage: null
   auth_hasSendRecoveryLink: boolean
 
+  auth_resetPasswordIsLoading: boolean
+  auth_resetPasswordIsFailure: boolean
+  auth_resetPasswordErrorMessage: null
+  auth_resetPasswordSuccess: boolean
+
   auth_isLoggedOut: boolean
   auth_loggedOutUser: IUser | null
 }
@@ -81,6 +87,11 @@ const initialState: AuthState = {
   auth_recoveryIsFailure: false,
   auth_recoveryErrorMessage: null,
   auth_hasSendRecoveryLink: false,
+
+  auth_resetPasswordIsLoading: false,
+  auth_resetPasswordIsFailure: false,
+  auth_resetPasswordErrorMessage: null,
+  auth_resetPasswordSuccess: false,
 
   // This state used tos say goodbye to user
   auth_isLoggedOut: false,
@@ -121,6 +132,8 @@ export const authSlice = createSlice({
       state.auth_socialLoginIsFailure = false
       state.auth_socialLoginError = initialState.auth_socialLoginError
     },
+
+    auth_reset: () => initialState,
   },
   extraReducers: builder => {
     // Login
@@ -186,6 +199,26 @@ export const authSlice = createSlice({
       state.auth_recoveryIsFailure = false
 
       state.auth_hasSendRecoveryLink = true
+    })
+
+    // Reset password
+    builder.addCase(auth_resetPassword.pending, state => {
+      state.auth_resetPasswordIsLoading = true
+      state.auth_resetPasswordIsFailure = false
+    })
+    builder.addCase(auth_resetPassword.rejected, (state, action) => {
+      state.auth_resetPasswordIsLoading = false
+      state.auth_resetPasswordIsFailure = true
+    })
+    builder.addCase(auth_resetPassword.fulfilled, (state, action) => {
+      state.auth_resetPasswordIsLoading = false
+      state.auth_resetPasswordIsFailure = false
+      state.auth_resetPasswordSuccess = true
+
+      /**
+       * NOTES!!
+       * User & token saved to persistAuth slice
+       */
     })
 
     // Logout

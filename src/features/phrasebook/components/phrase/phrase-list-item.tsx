@@ -61,7 +61,7 @@ const PhraseListItem: FC<Props> = props => {
         alignItems='flex-start'
         justifyContent='space-between'
       >
-        <Stack direction='column' spacing={1}>
+        <Stack direction='column' spacing={1} sx={{ width: '70%ˆ' }}>
           <Stack direction='column' spacing={0.4}>
             <PhraseLineItem phrase={phrase} langCode='vi' />
             <PhraseLineItem phrase={phrase} langCode='id' />
@@ -72,7 +72,7 @@ const PhraseListItem: FC<Props> = props => {
           direction='row'
           spacing={0}
           alignItems='center'
-          sx={{ ml: 'auto' }}
+          sx={{ ml: 'auto', width: '25%' }}
         >
           <IconButton size='medium'>
             <Iconify icon='ion:play-outline' height={18} width={18} />

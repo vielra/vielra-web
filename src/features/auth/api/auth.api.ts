@@ -4,9 +4,12 @@ import {
   IRequestRegister,
   IRequestSendLinkResetPassword,
   IResponseLogin,
+  IRequestVerifyTokenPasswordReset,
+  IRequestResetPassword, IResponseResetPassword,
 } from '@/features/auth/interfaces'
 import { HttpClient } from '@/features/app/http'
 import { authUtils } from '../utils'
+import { IUser } from '@/features/user/interfaces'
 
 const authApi = {
   loginWithEmail: async (body: IRequestLogin): Promise<IResponseLogin> => {
@@ -26,6 +29,20 @@ const authApi = {
       '/auth/send-reset-password-link',
       body
     )
+    return response.data
+  },
+
+  verifyTokenPasswordReset: async (
+    body: IRequestVerifyTokenPasswordReset
+  ): Promise<IUser> => {
+    const response = await HttpClient.post('auth/password-reset/verify', body)
+    return response.data
+  },
+
+  resetPassword: async (
+    body: IRequestResetPassword
+  ): Promise<IResponseResetPassword> => {
+    const response = await HttpClient.post('/auth/password-reset', body)
     return response.data
   },
 

@@ -12,7 +12,7 @@ import {
 // Mui components.
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
-import Divider from '@mui/material/Divider'
+import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
 
 // Validation schema
@@ -108,18 +108,36 @@ const PasswordRecoveryForm: FC = () => {
       </Stack>
 
       <Stack direction='column' spacing={2} sx={{ mt: 2 }}>
-        <Button
-          endIcon={
-            <Iconify icon='ion:arrow-forward-sharp' height={18} width={18} />
-          }
-          size='large'
-          type='submit'
-          variant='contained'
-          disabled={auth_recoveryIsLoading}
-          disableElevation
+        <Box
+          sx={{
+
+            textAlign: 'center',
+            width: '100%',
+            height: 44,
+          }}
         >
-          Send Recovery Link
-        </Button>
+          {auth_recoveryIsLoading ? (
+            <CircularProgress size={32} />
+          ) : (
+            <Button
+              endIcon={
+                <Iconify
+                  icon='ion:arrow-forward-sharp'
+                  height={18}
+                  width={18}
+                />
+              }
+              fullWidth
+              size='large'
+              type='submit'
+              variant='contained'
+              disabled={auth_recoveryIsLoading}
+              disableElevation
+            >
+              Send Recovery Link
+            </Button>
+          )}
+        </Box>
 
         <Stack direction='column' spacing={2} alignItems='center'>
           <Typography sx={{ textAlign: 'center' }}>

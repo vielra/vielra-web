@@ -52,7 +52,7 @@ const AuthLayout: FC<Props> = props => {
               px: { xs: 3, sm: 5, lg: 7 },
             }}
           >
-            <AuthHeader />
+            {/*<AuthHeader />*/}
             <Box
               sx={{
                 width: '100%',

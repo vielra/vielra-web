@@ -4,6 +4,7 @@ import {
   IRequestLogin,
   IRequestRegister,
   IRequestSendLinkResetPassword,
+  IRequestResetPassword,
 } from '@/features/auth/interfaces'
 import { authApi } from '@/features/auth/api'
 import { RootState } from '@/plugins/redux'
@@ -47,6 +48,17 @@ const auth_sendRecoveryLink = createAsyncThunk(
   }
 )
 
+const auth_resetPassword = createAsyncThunk(
+  '@auth/resetPassword',
+  async (body: IRequestResetPassword, { rejectWithValue }) => {
+    try {
+      return await authApi.resetPassword(body)
+    } catch (err) {
+      return rejectWithValue(err as IBaseApiResponseError)
+    }
+  }
+)
+
 const auth_loginWithSocialAccount = createAsyncThunk(
   '@auth/loginWithSocialAccount',
   async ({ params, provider }: ILoginWithSocialAccount) => {
@@ -74,6 +86,7 @@ export {
   auth_login,
   auth_register,
   auth_sendRecoveryLink,
+  auth_resetPassword,
   auth_loginWithSocialAccount,
   auth_logout,
 }

@@ -6,10 +6,12 @@ import Box from '@mui/material/Box'
 // components
 import { Iconify } from '@/components/core/iconify'
 import { IconifyIcon } from '@iconify/types'
+import { SxProps } from '@mui/material'
 
 interface BoxIconProps {
   size?: 'small' | 'medium' | 'large' | 'extra-large'
   icon: IconifyIcon | string
+  sx?: SxProps
 }
 
 const getSize = (size: BoxIconProps['size']): number => {
@@ -32,7 +34,7 @@ const getSize = (size: BoxIconProps['size']): number => {
 }
 
 const BoxIcon: FC<BoxIconProps> = props => {
-  const { size, icon } = props
+  const { size, icon, sx } = props
   return (
     <Box
       sx={{
@@ -41,6 +43,7 @@ const BoxIcon: FC<BoxIconProps> = props => {
         color: 'primary.main',
         backgroundColor: 'primary.light',
         borderRadius: `${getSize(size)}px`,
+        ...sx,
       }}
       display='flex'
       alignItems='center'

@@ -1,4 +1,5 @@
 import { authUtils } from '@/features/auth/utils'
+import { getLanguageName, getFlagIcon } from './app-locale.utils'
 
 const authRequestTokenHeader = (): Record<string, string | undefined> => {
   return {
@@ -8,4 +9,6 @@ const authRequestTokenHeader = (): Record<string, string | undefined> => {
 
 export const AppUtils = {
   authRequestTokenHeader,
+  getLanguageName,
+  getFlagIcon,
 }

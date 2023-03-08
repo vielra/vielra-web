@@ -99,19 +99,30 @@ interface MenuPopoverProps extends PopoverProps {
 }
 
 const MenuPopover: FC<MenuPopoverProps> = props => {
-  const { children, arrow, disabledArrow, sx, ...otherProps } = props
+  const {
+    children,
+    arrow,
+    disabledArrow,
+    transformOrigin,
+    anchorOrigin,
+    sx,
+    ...otherProps
+  } = props
   return (
     <MuiPopover
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={anchorOrigin}
+      transformOrigin={transformOrigin}
       PaperProps={{
         sx: {
           p: 1,
           minWidth: 100,
           overflow: 'inherit',
-          boxShadow: 2,
+          boxShadow: 4,
           backgroundColor: 'background.paper',
           backgroundImage: 'none',
+          '& .MuiMenuItem-root': {
+            borderRadius: 1,
+          },
           ...sx,
         },
       }}
@@ -126,6 +137,8 @@ const MenuPopover: FC<MenuPopoverProps> = props => {
 MenuPopover.defaultProps = {
   arrow: 'top-right',
   disabledArrow: false,
+  anchorOrigin: { vertical: 'bottom', horizontal: 'right' },
+  transformOrigin: { vertical: 'top', horizontal: 'right' },
 }
 
 export { MenuPopover }

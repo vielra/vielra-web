@@ -5,7 +5,8 @@ import {
   IRequestSendLinkResetPassword,
   IResponseLogin,
   IRequestVerifyTokenPasswordReset,
-  IRequestResetPassword, IResponseResetPassword,
+  IRequestResetPassword,
+  IResponseResetPassword,
 } from '@/features/auth/interfaces'
 import { HttpClient } from '@/features/app/http'
 import { authUtils } from '../utils'

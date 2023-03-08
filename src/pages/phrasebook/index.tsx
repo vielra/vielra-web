@@ -9,7 +9,7 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 
 // components
-import { DefaultLayout } from '@/components/layouts'
+import { DefaultLayout } from '@/features/app/components/layouts'
 
 // interfaces
 import { NextPageWithLayout } from '@/features/common/interfaces'

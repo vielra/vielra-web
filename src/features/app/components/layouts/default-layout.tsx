@@ -13,6 +13,9 @@ import { useRouter } from 'next/router'
 import { useApp } from '@/features/app/hooks'
 import { useAppDispatch } from '@/plugins/redux'
 
+import { AppHeader, AppFooter } from '@/features/app/components'
+import { AppUIConfig } from '@/features/app/config'
+
 const DialogAuth = dynamic(
   () => import('@/features/auth/components/dialog-auth'),
   { ssr: false }
@@ -36,9 +39,13 @@ const DefaultLayout: FC<Props> = props => {
 
   return (
     <Box component='main'>
-      <Header />
-      {props.children}
-      <Footer />
+      <AppHeader />
+      <Box sx={{ paddingTop: `${AppUIConfig.HeaderHeight}px` }}>
+        {/* Its a just spacer */}
+        <Box sx={{ height: 20, backgroundColor: 'background.paper' }} />
+        {props.children}
+      </Box>
+      <AppFooter />
       <DialogAuth />
       <DialogUserLoggedOut />
     </Box>

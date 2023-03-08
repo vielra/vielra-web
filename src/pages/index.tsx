@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { DefaultLayout } from '@/components/layouts'
+import { DefaultLayout } from '@/features/app/components/layouts'
 import { NextPageWithLayout } from '@/features/common/interfaces'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'

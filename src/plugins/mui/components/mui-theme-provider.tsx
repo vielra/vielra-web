@@ -31,7 +31,7 @@ const MuiThemeProvider: FC<MuiThemeProviderProps> = ({ children }) => {
   // Theme config.
   const theme = useMemo<Theme>(() => {
     const palette =
-      appTheme_paletteMode === 'dark'
+      appTheme_paletteMode === 'light'
         ? merge(paletteBase, paletteDark)
         : merge(paletteBase, paletteLight)
     return createTheme({

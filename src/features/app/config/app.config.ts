@@ -3,6 +3,7 @@ import {
   KEY_COOKIE_ACCESS_TOKEN_DEV,
   KEY_COOKIE_ACCESS_TOKEN_PROD,
 } from '@/features/app/constants'
+import { AppUIConfig } from '@/features/app/config/app-ui.config'
 
 // prettier-ignore
 export const AppConfig = {
@@ -12,5 +13,6 @@ export const AppConfig = {
   AppFavicon: !IS_DEVELOPMENT ? 'images/icons/primary/favicon-32x32.png' : 'images/icons/secondary/favicon-32x32.png',
   AppLogo: !IS_DEVELOPMENT ? 'images/logo-primary.png' : 'images/logo-secondary.png',
   AppLogoFull: !IS_DEVELOPMENT ? 'images/logo-primary-vertical-lookup.png' : 'images/logo-secondary-vertical-lookup.png',
-  KeyAccessToken: !IS_DEVELOPMENT ? KEY_COOKIE_ACCESS_TOKEN_PROD: KEY_COOKIE_ACCESS_TOKEN_DEV
+  KeyAccessToken: !IS_DEVELOPMENT ? KEY_COOKIE_ACCESS_TOKEN_PROD: KEY_COOKIE_ACCESS_TOKEN_DEV,
+  ...AppUIConfig
 }

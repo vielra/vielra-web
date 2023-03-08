@@ -1,4 +1,4 @@
-import { AuthLayout } from '@/components/layouts'
+import { AuthLayout } from '@/features/app/components/layouts'
 import { SignUpForm } from '@/features/auth/components'
 import { NextPageWithLayout } from '@/features/common/interfaces'
 import { GuestGuard } from '@/components/guards'

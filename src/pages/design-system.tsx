@@ -1,4 +1,4 @@
-import { DefaultLayout } from '@/components/layouts'
+import { DefaultLayout } from '@/features/app/components/layouts'
 import { DevComponents } from '@/features/app/components/dev-components'
 import { NextPageWithLayout } from '@/features/common/interfaces'
 import Box from '@mui/material/Box'

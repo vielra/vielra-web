@@ -1,6 +1,6 @@
 import React from 'react'
 import { GuestGuard } from '@/components/guards'
-import { AuthLayout } from '@/components/layouts'
+import { AuthLayout } from '@/features/app/components/layouts'
 import { SignInForm } from '@/features/auth/components'
 import { NextPageWithLayout } from '@/features/common/interfaces'
 

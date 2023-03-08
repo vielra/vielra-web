@@ -1,4 +1,4 @@
-import { AuthLayout } from '@/components/layouts'
+import { AuthLayout } from '@/features/app/components/layouts'
 import {
   DialogPasswordRecoveryFailure,
   PasswordRecoveryForm,

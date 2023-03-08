@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/router'
 
-import { AuthLayout } from '@/components/layouts'
+import { AuthLayout } from '@/features/app/components/layouts'
 import {
   PasswordResetSuccess,
   PasswordResetForm,

@@ -1,4 +1,4 @@
-import { DefaultLayout } from '@/components/layouts'
+import { DefaultLayout } from '@/features/app/components/layouts'
 import { useAuth } from '@/features/auth/hook'
 import { NextPageWithLayout } from '@/features/common/interfaces'
 

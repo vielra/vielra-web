@@ -38,13 +38,9 @@ const DefaultLayout: FC<Props> = props => {
   }, [router.locale])
 
   return (
-    <Box component='main'>
+    <Box component='main' sx={{ paddingTop: `${AppUIConfig.HeaderHeight}px` }}>
       <AppHeader />
-      <Box sx={{ paddingTop: `${AppUIConfig.HeaderHeight}px` }}>
-        {/* Its a just spacer */}
-        <Box sx={{ height: 20, backgroundColor: 'background.paper' }} />
-        {props.children}
-      </Box>
+      <Box sx={{ minHeight: '80vh' }}>{props.children}</Box>
       <AppFooter />
       <DialogAuth />
       <DialogUserLoggedOut />

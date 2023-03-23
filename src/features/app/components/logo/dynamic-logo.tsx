@@ -73,7 +73,7 @@ const DynamicLogo: FC<DynamicLogoProps> = ({ onClick, logoSize, sx }) => {
 
 DynamicLogo.defaultProps = {
   sx: {},
-  logoSize: 26,
+  logoSize: 22,
 }
 
 export { DynamicLogo }

@@ -54,9 +54,9 @@ const StyledNavLink = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
   margin: theme.spacing(0, 3),
   fontSize: '0.95rem',
-  fontWeight: 500,
+  // fontWeight: 500,
   '&:hover': {
-    color: theme.palette.text.primary,
+    color: theme.palette.primary.main,
   },
 }))
 

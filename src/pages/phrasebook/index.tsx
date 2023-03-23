@@ -38,7 +38,7 @@ const PhrasebookPage: NextPageWithLayout<unknown> = () => {
   }, [])
 
   return (
-    <Box>
+    <Box sx={{ py: 2 }}>
       <Container>
         <PhraseCategoryContainer
           isLoading={phrasebook_categoriesIsLoading}

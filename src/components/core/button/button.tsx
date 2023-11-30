@@ -1,13 +1,30 @@
 import { FC } from 'react'
-// import Box from '@mui/material/Box'
 import MuiButton, { ButtonProps } from '@mui/material/Button'
-// import { Icon } from '@iconify/react'
+import { styled } from '@mui/material/styles'
 
 type Props = ButtonProps
 
-const Button: FC<Props> = (props) => {
-  const { icon, isError, ...rest } = props
-  return <MuiButton {...rest} />
+export const StyledButton = styled(MuiButton)({
+  textTransform: 'unset',
+  fontWeight: 500,
+  whiteSpace: 'pre-wrap',
+
+  // small
+  '&.MuiButton-sizeSmall': {
+    padding: '4px 14px',
+  },
+
+  '&.MuiButton-sizeMedium': {
+    padding: '6px 14px',
+  },
+
+  '&.MuiButton-sizeLarge': {
+    padding: '8px 26px',
+  },
+})
+
+const Button: FC<Props> = props => {
+  return <StyledButton {...props} />
 }
 
 export { Button }

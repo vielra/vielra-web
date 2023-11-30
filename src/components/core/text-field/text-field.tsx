@@ -1,23 +1,35 @@
 import { FC } from 'react'
 import Box from '@mui/material/Box'
-import MuiTextField, { OutlinedTextFieldProps } from '@mui/material/TextField'
-import { Icon } from '@iconify/react'
+import OutlinedInput, { OutlinedInputProps } from '@mui/material/OutlinedInput'
+import InputLabel from '@mui/material/InputLabel'
+import FormHelperText from '@mui/material/FormHelperText'
+import FormControl from '@mui/material/FormControl'
+import { Iconify } from '@/components/core/iconify'
+import { SxProps } from '@mui/material'
 
-interface Props extends Omit<OutlinedTextFieldProps, 'variant'> {
+interface Props extends OutlinedInputProps {
   icon?: string
   iconImage?: string
-  isError?: boolean
-  isSuccess?: boolean
   variant?: string
   elevation?: number
+  helperText?: string | null | false
+  inputIconStyles?: SxProps
 }
 
-const TextField: FC<Props> = (props) => {
-  const { icon, iconImage, elevation, variant, isError, isSuccess, ...rest } = props
+const TextField: FC<Props> = props => {
+  const {
+    id,
+    label,
+    error,
+    icon,
+    size,
+    iconImage,
+    elevation,
+    helperText,
+    inputIconStyles,
+    ...rest
+  } = props
 
-  const getBorderColor = (_isSuccess: boolean): string => {
-    return _isSuccess ? 'success.main' : 'transparent'
-  }
   return (
     <Box sx={{ position: 'relative' }}>
       {(icon || iconImage) && (
@@ -34,16 +46,16 @@ const TextField: FC<Props> = (props) => {
             color: 'primary.contrastText',
             position: 'relative',
             zIndex: 1,
+            ...inputIconStyles,
           }}
         >
-          <Icon icon={icon as string} />
+          <Iconify icon={icon as string} />
         </Box>
       )}
-
-      <MuiTextField
+      <FormControl
+        fullWidth
+        variant='outlined'
         sx={{
-          '& fieldset': { borderColor: getBorderColor(Boolean(isSuccess)) },
-
           // input label
           '& .MuiInputLabel-root': {
             '&:not(.MuiInputLabel-sizeSmall)': {
@@ -54,28 +66,44 @@ const TextField: FC<Props> = (props) => {
               transform: 'translate(18px, -7px) scale(0.6) !important',
             },
           },
-
-          '& .MuiInputBase-root': {
-            boxShadow: elevation,
-            backgroundColor: 'background.paper',
-          },
-          '& .MuiInputBase-input': {
-            boxShadow: elevation,
-            backgroundColor: 'background.paper',
-            '&:not(.MuiInputBase-inputSizeSmall)': {
-              padding: '12px 18px',
-            },
-          },
         }}
-        {...rest}
-      />
+      >
+        <InputLabel htmlFor={id}>{label}</InputLabel>
+        <OutlinedInput
+          id={id}
+          label={label}
+          error={error}
+          size={size}
+          sx={{
+            backgroundColor: 'background.paper',
+            fontSize: '0.95rem',
+            boxShadow: elevation,
+            borderRadius: 1,
+
+            ...(size !== 'small' && {
+              padding: '12px 18px',
+            }),
+
+            '& .MuiInputBase-input': {
+              padding: 0,
+            },
+
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'transparent',
+            },
+          }}
+          {...rest}
+        />
+        {helperText && (
+          <FormHelperText error={error}>{helperText}</FormHelperText>
+        )}
+      </FormControl>
     </Box>
   )
 }
 
 TextField.defaultProps = {
   elevation: 0,
-  isSuccess: false,
 }
 
 export { TextField }

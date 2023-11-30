@@ -1,10 +1,16 @@
 import { FC, forwardRef, ReactElement, ReactNode } from 'react'
 
 // Mui components.
-import Zoom, { ZoomProps } from '@mui/material/Zoom'
 import Slide, { SlideProps } from '@mui/material/Slide'
 import MuiDialog, { DialogProps } from '@mui/material/Dialog'
-import { Box, IconButton, styled, Typography, SxProps } from '@mui/material'
+import {
+  Box,
+  IconButton,
+  styled,
+  Typography,
+  SxProps,
+  useTheme,
+} from '@mui/material'
 
 // Mui icons.
 import CloseIcon from '@mui/icons-material/Close'
@@ -15,12 +21,15 @@ import { Button } from '../button'
 
 // Transition component.
 // eslint-disable-next-line react/display-name
-const Transition = forwardRef<unknown, ZoomProps>((props, ref): ReactElement => <Zoom ref={ref} {...props} />)
+const Transition = forwardRef<unknown, SlideProps>(
+  (props, ref): ReactElement => <Slide ref={ref} direction='up' {...props} />
+)
 
 const DialogTitle = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2),
 }))
 const DialogContent = styled(Box)(({ theme }) => ({
+  height: '100%',
   '& p': {
     marginBottom: theme.spacing(1.5),
     '&:last-child': {
@@ -48,7 +57,8 @@ interface Props extends Omit<DialogProps, 'title'> {
   enableActionButton?: boolean
 }
 
-const Dialog: FC<Props> = (props) => {
+const Dialog: FC<Props> = props => {
+  const theme = useTheme()
   const {
     sx,
     open,
@@ -73,27 +83,23 @@ const Dialog: FC<Props> = (props) => {
       fullWidth
       maxWidth={maxWidth}
       open={open}
-      keepMounted
       onClose={onClose}
       TransitionComponent={Transition}
       PaperProps={{
         elevation: 1,
         sx: {
           position: 'relative',
-          borderRadius: 2,
+          borderRadius: 1.6,
           m: 0,
           px: {
-            xs: 6,
+            xs: 3,
             md: 9,
           },
           py: {
-            xs: 3,
+            xs: 2,
             md: 6,
           },
-          // p: {
-          //   xs: (theme) => theme.spacing(4, 6),
-          //   md: (theme) => theme.spacing(7, 9),
-          // },
+
           ...paperStyles,
         },
       }}
@@ -111,7 +117,11 @@ const Dialog: FC<Props> = (props) => {
             pb: 2,
             lineHeight: 1,
             textAlign: 'center',
-            '& svg': { height: '60px !important', width: '60px !important', color: `${iconColor} !important` },
+            '& svg': {
+              height: '60px !important',
+              width: '60px !important',
+              color: `${iconColor} !important`,
+            },
           }}
         >
           {icon}
@@ -119,14 +129,24 @@ const Dialog: FC<Props> = (props) => {
       )}
       {title && (
         <DialogTitle>
-          <Typography sx={{ fontSize: 24, fontWeight: 'bold' }}>{title}</Typography>
+          <Typography sx={{ fontSize: 24, fontWeight: 'bold' }}>
+            {title}
+          </Typography>
         </DialogTitle>
       )}
 
       {!disableCloseButton && (
         <IconButton
           onClick={onClose as () => void}
-          sx={{ position: 'absolute', top: (theme) => theme.spacing(2.6), right: (theme) => theme.spacing(3) }}
+          sx={{
+            backgroundColor: theme.palette.action.hover,
+            '&:hover': {
+              backgroundColor: theme.palette.action.active,
+            },
+            position: 'absolute',
+            top: theme => theme.spacing(2.6),
+            right: theme => theme.spacing(3),
+          }}
         >
           <CloseIcon sx={{ fontSize: 22 }} />
         </IconButton>
@@ -135,11 +155,20 @@ const Dialog: FC<Props> = (props) => {
       {enableActionButton && (
         <DialogActions>
           {!disableCancelButton && (
-            <Button onClick={onClose as () => void} size="medium" variant="text">
+            <Button
+              onClick={onClose as () => void}
+              size='medium'
+              variant='text'
+            >
               {cancelButtonText}
             </Button>
           )}
-          <Button disabled={disableConfirmButton} onClick={onConfirm} size="medium" sx={{ ml: 'auto' }}>
+          <Button
+            disabled={disableConfirmButton}
+            onClick={onConfirm}
+            size='medium'
+            sx={{ ml: 'auto' }}
+          >
             {confirmButtonText}
           </Button>
         </DialogActions>

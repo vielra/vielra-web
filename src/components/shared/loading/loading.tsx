@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
-import CircularProgress, { CircularProgressProps } from '@mui/material/CircularProgress'
+import CircularProgress, {
+  CircularProgressProps,
+} from '@mui/material/CircularProgress'
 import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material'
 
@@ -7,7 +9,7 @@ interface LoadingProps extends CircularProgressProps {
   fullscreen?: boolean
 }
 
-const Loading: FC<LoadingProps> = (props) => {
+const Loading: FC<LoadingProps> = props => {
   const { fullscreen, ...rest } = props
   const theme = useTheme()
   return (
@@ -30,10 +32,15 @@ const Loading: FC<LoadingProps> = (props) => {
       }}
     >
       <Box
-        component="img"
-        sx={{ width: 26, height: 'auto', position: 'absolute', transform: 'translateY(1px)' }}
-        src="/images/logo-secondary.png"
-        alt="logo"
+        component='img'
+        sx={{
+          width: 26,
+          height: 'auto',
+          position: 'absolute',
+          transform: 'translateY(1px)',
+        }}
+        src='/images/logo-secondary.png'
+        alt='logo'
       />
       <CircularProgress size={60} {...rest} />
     </Box>

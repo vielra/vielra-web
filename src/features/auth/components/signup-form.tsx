@@ -1,14 +1,18 @@
-import { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState, MouseEvent } from 'react'
 
-import RouterLink from 'next/link'
-
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import {
+  Controller,
+  SubmitErrorHandler,
+  SubmitHandler,
+  useForm,
+} from 'react-hook-form'
 
 // Mui components.
 import Box from '@mui/material/Box'
-import Link from '@mui/material/Link'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton'
+import InputAdornment from '@mui/material/InputAdornment'
 
 // Validation schema
 import { signUpValidation } from '../validations'
@@ -18,25 +22,38 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { IRequestRegister } from '../interfaces'
 import { TextField } from '@/components/core'
 import { Button } from '@/components/core/button'
-import { useAuth } from '../hook'
-import { useAppDispatch } from '@/store'
+
+// Hooks
+import { useAppDispatch } from '@/plugins/redux'
+import { useAuth } from '@/features/auth/hook'
+import { APP_ROUTE_PATHS } from '@/features/app/routes'
+import { Iconify } from '@/components/core/iconify'
+import { Link } from '@/components/core/link'
+import dynamic from 'next/dynamic'
 
 type TInputs = IRequestRegister
+
+const AuthSocialButtonHorizontal = dynamic(
+  () => import('@/features/auth/components/auth-social-button-horizontal'),
+  { ssr: false }
+)
 
 const SignUpForm: FC = () => {
   const dispatch = useAppDispatch()
 
-  const { auth_register, auth_setToken, auth_setUser } = useAuth()
+  const { auth_register, auth_registerIsFailure, auth_registerIsLoading } =
+    useAuth()
 
   // States
-  const [usernameIsAvailable, setUsernameIsAvailable] = useState<boolean>(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPass, setShowConfirmPass] = useState(false)
 
   /**
    * Initial values
    */
   const initialValues: TInputs = {
     name: '',
-    username: '',
+    // username: '',
     email: '',
     password: '',
     password_confirmation: '',
@@ -55,129 +72,170 @@ const SignUpForm: FC = () => {
     resolver: yupResolver(signUpValidation),
   })
 
+  const handleMouseDownPassword = (
+    event: MouseEvent<HTMLButtonElement>
+  ): void => {
+    event.preventDefault()
+  }
+
   /**
    * Hook form submit handler.
    * @param values
    */
-  const handleSubmitSignUp: SubmitHandler<TInputs> = async (values) => {
-    // const formValues = values
-
-    console.log('---handleSubmitSignUp values', values)
-    try {
-      const response = await auth_register(values).unwrap()
-      console.log('---response', response)
-      if (response.token && response.user) {
-        dispatch(auth_setToken(response.token))
-        dispatch(auth_setUser(response.user))
-      }
-    } catch (_) {}
+  const onValidSubmit: SubmitHandler<TInputs> = async values => {
+    dispatch(auth_register(values))
   }
 
-  const handleError = (objErrors: any): void => {
+  const onInvalidSubmit: SubmitErrorHandler<TInputs> = (objErrors): void => {
     console.log('❌ objErrors', objErrors)
   }
 
-  useEffect(() => {
-    if (watch('username') && !errors?.username) {
-      setUsernameIsAvailable(true)
-    } else {
-      setUsernameIsAvailable(false)
-    }
-  }, [watch('username'), errors.username])
-
   return (
-    <Box component="form" onSubmit={handleSubmit(handleSubmitSignUp, handleError)}>
+    <Box
+      component='form'
+      onSubmit={handleSubmit(onValidSubmit, onInvalidSubmit)}
+    >
       <Stack spacing={0.5}>
         <Controller
-          name="name"
+          name='name'
           control={control}
           render={({ field }) => (
             <TextField
+              value={field.value}
+              onChange={field.onChange}
               fullWidth
-              label="Name"
-              icon="mdi:account-circle"
-              margin="none"
+              label='Name'
+              icon='mdi:account-circle'
+              margin='none'
               elevation={1}
               error={Boolean(errors?.name?.message)}
-              helperText={Boolean(errors?.name?.message) && errors?.name?.message}
-              {...field}
-            />
-          )}
-        />
-        <Controller
-          name="username"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              fullWidth
-              label="Username"
-              icon="mdi:account-badge"
-              margin="none"
-              elevation={1}
-              error={Boolean(errors?.username?.message)}
               helperText={
-                Boolean(errors?.username?.message)
-                  ? errors?.username?.message
-                  : usernameIsAvailable && 'Username available'
+                Boolean(errors?.name?.message) && errors?.name?.message
               }
-              isSuccess={usernameIsAvailable}
-              {...field}
             />
           )}
         />
         <Controller
-          name="email"
+          name='email'
           control={control}
           render={({ field }) => (
             <TextField
+              value={field.value}
+              onChange={field.onChange}
               fullWidth
-              icon="mdi:email"
-              label="Email"
-              margin="none"
+              icon='mdi:email'
+              label='Email'
+              margin='none'
               elevation={1}
               error={Boolean(errors?.email?.message)}
-              helperText={Boolean(errors?.email?.message) && errors?.email?.message}
-              {...field}
+              helperText={
+                Boolean(errors?.email?.message) && errors?.email?.message
+              }
             />
           )}
         />
         <Controller
-          name="password"
+          name='password'
           control={control}
           render={({ field }) => (
             <TextField
+              value={field.value}
+              onChange={field.onChange}
               fullWidth
-              label="Password"
-              icon="mdi:lock"
-              margin="none"
+              id='register-input-password'
+              label='Password'
+              icon='ion:key'
+              margin='none'
               elevation={1}
+              type={showPassword ? 'text' : 'password'}
               error={Boolean(errors?.password?.message)}
-              helperText={Boolean(errors?.password?.message) && errors?.password?.message}
-              {...field}
+              helperText={
+                Boolean(errors?.password?.message)
+                  ? errors?.password?.message
+                  : null
+              }
+              endAdornment={
+                <InputAdornment position='end'>
+                  <IconButton
+                    onClick={() => setShowPassword(!showPassword)}
+                    onMouseDown={handleMouseDownPassword}
+                    edge='end'
+                  >
+                    {showPassword ? (
+                      <Iconify icon='ion:eye-outline' height={18} width={18} />
+                    ) : (
+                      <Iconify
+                        icon='ion:eye-off-outline'
+                        height={18}
+                        width={18}
+                      />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              }
             />
           )}
         />
         <Controller
-          name="password_confirmation"
+          name='password_confirmation'
           control={control}
           render={({ field }) => (
             <TextField
+              value={field.value}
+              onChange={field.onChange}
               fullWidth
-              icon="mdi:lock"
-              margin="none"
-              label="Password Confirmation"
+              id='register-input-password_confirmation'
+              label='Password'
+              icon='ion:key'
+              margin='none'
               elevation={1}
+              type={showConfirmPass ? 'text' : 'password'}
               error={Boolean(errors?.password_confirmation?.message)}
-              helperText={Boolean(errors?.password_confirmation?.message) && errors?.password_confirmation?.message}
-              {...field}
+              helperText={
+                Boolean(errors?.password_confirmation?.message)
+                  ? errors?.password_confirmation?.message
+                  : null
+              }
+              endAdornment={
+                <InputAdornment position='end'>
+                  <IconButton
+                    onClick={() => setShowConfirmPass(!showConfirmPass)}
+                    onMouseDown={handleMouseDownPassword}
+                    edge='end'
+                  >
+                    {showConfirmPass ? (
+                      <Iconify icon='ion:eye-outline' height={18} width={18} />
+                    ) : (
+                      <Iconify
+                        icon='ion:eye-off-outline'
+                        height={18}
+                        width={18}
+                      />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              }
             />
           )}
         />
       </Stack>
       <Stack sx={{ mt: 3 }} spacing={2}>
-        <Button type="submit" variant="contained" fullWidth disableElevation>
-          Sign Up
+        <Button
+          endIcon={<Iconify icon='ion:arrow-forward' height={20} width={20} />}
+          size='large'
+          type='submit'
+          variant='contained'
+          fullWidth
+          disableElevation
+          disabled={auth_registerIsLoading}
+        >
+          Create Account
         </Button>
+
+        <Box sx={{ mb: 4, width: '100%' }}>
+          <AuthSocialButtonHorizontal />
+        </Box>
+
         <Box
           sx={{
             width: '100%',
@@ -188,9 +246,10 @@ const SignUpForm: FC = () => {
           }}
         >
           <Typography>Joined with Vielra before ? </Typography>
-          <RouterLink href="/signin">
-            <Link>Sign In</Link>
-          </RouterLink>
+
+          <Link href={APP_ROUTE_PATHS.SignInWithParamsAppID} underline='hover'>
+            Log In
+          </Link>
         </Box>
       </Stack>
     </Box>

@@ -2,7 +2,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { NextPageWithLayout } from '@/features/common/interfaces'
 
-const PageNotFound: NextPageWithLayout<any> = () => {
+const PageNotFound: NextPageWithLayout<unknown> = () => {
   return (
     <Box
       sx={{
@@ -14,8 +14,11 @@ const PageNotFound: NextPageWithLayout<any> = () => {
         justifyContent: 'center',
       }}
     >
-      <Typography variant="h4">Awww..</Typography>
-      <Typography gutterBottom sx={{ fontSize: '1.1rem', color: 'text.secondary' }}>
+      <Typography variant='h4'>Awww..</Typography>
+      <Typography
+        gutterBottom
+        sx={{ fontSize: '1.1rem', color: 'text.secondary' }}
+      >
         {/* eslint-disable-next-line react/no-unescaped-entities  */}
         don't cry! it's a just a 404 error!
       </Typography>
@@ -23,6 +26,6 @@ const PageNotFound: NextPageWithLayout<any> = () => {
   )
 }
 
-PageNotFound.getLayout = (page) => <>{page}</>
+PageNotFound.getLayout = page => <>{page}</>
 
 export default PageNotFound

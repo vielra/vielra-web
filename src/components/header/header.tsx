@@ -2,15 +2,22 @@ import { FC } from 'react'
 
 // Mui components
 import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-
-// Constants
-import { APP_NAME } from '@/features/app/constants'
+import { useTranslation } from 'next-i18next'
+import { Link } from '@/components/core/link'
 
 const Header: FC = () => {
+  const { t } = useTranslation(['common'])
+
   return (
-    <Box sx={{ height: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <Typography>Header</Typography>
+    <Box
+      sx={{
+        height: 70,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Link href={'/'}>{t('common:hello')}</Link>
     </Box>
   )
 }

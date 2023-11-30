@@ -4,12 +4,16 @@ import { FC } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
-// Constants
-import { APP_NAME } from '@/features/app/constants'
-
 const Footer: FC = () => {
   return (
-    <Box sx={{ height: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <Box
+      sx={{
+        height: 70,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       <Typography>Footer</Typography>
     </Box>
   )
